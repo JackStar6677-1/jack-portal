@@ -1,0 +1,9 @@
+services:
+  jack-portal:
+    build:
+      context: .
+    image: jack-portal:latest
+    container_name: jack-portal
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8082:8080"
