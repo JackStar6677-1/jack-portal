@@ -1,9 +1,12 @@
-FROM nginx:1.29-alpine
+FROM python:3.12-alpine
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY index.html styles.css script.js /usr/share/nginx/html/
+WORKDIR /app
+
+COPY index.html styles.css script.js server.py ./
 
 EXPOSE 8080
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
   CMD wget -qO- http://127.0.0.1:8080/healthz || exit 1
+
+CMD ["python", "server.py"]

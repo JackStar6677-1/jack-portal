@@ -4,19 +4,33 @@ Portal profesional publico de Pablo Elias Avendano Miranda.
 
 ## Objetivo
 
-Presentar servicios de desarrollo, automatizacion, infraestructura y soporte
-tecnico mediante casos reales y canales de contacto directos.
+Presentar servicios tecnicos de desarrollo web, infraestructura, automatizacion,
+soporte TI y sistemas internos para colegios, centros, comunidades y pequenas
+organizaciones.
 
-## Desarrollo local
+## Stack
 
-El sitio es estatico. Puede abrirse directamente o servirse con cualquier
-servidor HTTP local.
+- Python 3.12 con libreria estandar.
+- HTML/CSS/JavaScript sin dependencias de frontend.
+- Docker en `127.0.0.1:8082`.
+
+## Endpoints
+
+- `GET /api/health`
+- `GET /api/profile`
+- `GET /api/services`
+- `GET /api/projects`
+- `POST /api/contact`
+
+El formulario de contacto valida payload, aplica honeypot y rate limit simple.
+No imprime mensajes completos ni credenciales en logs. La entrega queda en modo
+`mailto` para evitar hardcodear webhooks o secretos.
 
 ## Despliegue
 
 ```text
-GitHub -> star -> Nginx en 127.0.0.1:8082 -> Cloudflare Tunnel -> jack.drakescraft.cl
+GitHub -> star -> jack-portal en 127.0.0.1:8082 -> Cloudflare Tunnel -> jack.drakescraft.cl
 ```
 
-El portal se mantiene separado de `drakescraft-web`, CCAACalendar y futuros
-servicios privados.
+El portal se mantiene separado de `drakescraft-web`, CCAACalendar, Vault,
+Webmin y paneles privados.

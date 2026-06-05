@@ -3,205 +3,186 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Pablo Elias Avendano Miranda: desarrollo web, automatizacion, infraestructura, servidores y soporte tecnico en Chile.">
-  <meta name="theme-color" content="#090b12">
-  <title>Jack | Soluciones tecnicas y sistemas reales</title>
+  <title>Pablo Elías Miranda · Desarrollo, infraestructura y automatización</title>
+  <meta name="description" content="Servicios técnicos de desarrollo web, servidores, automatización, soporte TI y sistemas internos para colegios, centros, comunidades y pequeñas organizaciones.">
+  <meta name="theme-color" content="#07050f">
+  <link rel="canonical" href="https://jack.drakescraft.cl/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Pablo Elías Miranda · Desarrollo, infraestructura y automatización">
+  <meta property="og:description" content="Servicios técnicos de desarrollo web, servidores, automatización, soporte TI y sistemas internos para colegios, centros, comunidades y pequeñas organizaciones.">
+  <meta property="og:url" content="https://jack.drakescraft.cl/">
+  <meta property="og:site_name" content="Pablo Elías Miranda">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1">
+  <link rel="stylesheet" href="/styles.css?v=2">
 </head>
 <body>
   <canvas id="signal-field" aria-hidden="true"></canvas>
-  <div class="noise" aria-hidden="true"></div>
+  <div class="page-glow" aria-hidden="true"></div>
   <div class="progress" id="progress" aria-hidden="true"></div>
 
   <header class="site-header">
     <a class="brand" href="#inicio" aria-label="Ir al inicio">
-      <span class="brand-mark">J</span>
+      <span class="brand-mark">PM</span>
       <span>
-        <strong>Jack</strong>
-        <small>Pablo Elias A. Miranda</small>
+        <strong>Pablo Elías Miranda</strong>
+        <small>Ingeniero en Informática</small>
       </span>
     </a>
-    <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">
+    <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
       <span></span><span></span>
     </button>
     <nav class="nav-links" aria-label="Principal">
       <a href="#servicios">Servicios</a>
       <a href="#proyectos">Proyectos</a>
-      <a href="#metodo">Metodo</a>
-      <a href="#contacto" class="nav-cta">Hablemos</a>
+      <a href="#experiencia">Experiencia</a>
+      <a href="#contacto" class="nav-cta">Diagnóstico</a>
     </nav>
   </header>
 
   <main>
     <section class="hero section" id="inicio">
       <div class="hero-copy reveal">
-        <div class="eyebrow"><span></span> Ingeniero en Informatica · Chile</div>
-        <h1>Convierto problemas tecnicos en <em>sistemas que funcionan.</em></h1>
+        <p class="eyebrow"><span></span> Desarrollo web · Infraestructura · Automatización · Soporte TI</p>
+        <h1>Soluciones técnicas para software, infraestructura y automatización</h1>
         <p class="hero-lead">
-          Desarrollo software, automatizo procesos y mantengo infraestructura para personas,
-          equipos y organizaciones que necesitan soluciones claras, estables y mantenibles.
+          Desarrollo sistemas web, automatizaciones, servidores y herramientas internas para colegios,
+          centros, comunidades y pequeñas organizaciones.
         </p>
         <div class="hero-actions">
-          <a class="button primary" href="#contacto">Solicitar diagnostico</a>
-          <a class="button secondary" href="#proyectos">Ver trabajo real</a>
-        </div>
-        <div class="hero-trust">
-          <span>Desarrollo web</span>
-          <span>Automatizacion</span>
-          <span>Linux + Docker</span>
-          <span>Hardware</span>
+          <a class="button primary" href="#contacto">Solicitar diagnóstico</a>
+          <a class="button secondary" href="#servicios">Ver servicios</a>
+          <a class="button ghost" href="#proyectos">Ver proyectos</a>
         </div>
       </div>
 
-      <aside class="ops-card reveal" aria-label="Panel operativo">
-        <div class="ops-head">
-          <div><span class="pulse"></span> Disponible para proyectos</div>
-          <time id="local-time">Chile · --:--</time>
-        </div>
-        <div class="ops-terminal">
-          <p><span>$</span> enfoque --actual</p>
-          <strong>Sistemas reales, no demos desechables.</strong>
-          <p><span>$</span> capacidades --resumen</p>
-          <ul>
-            <li><i></i> Diagnostico y arquitectura</li>
-            <li><i></i> Implementacion y despliegue</li>
-            <li><i></i> Documentacion y continuidad</li>
-          </ul>
-        </div>
-        <div class="ops-stats">
-          <div><small>ENTREGA</small><strong>End-to-end</strong></div>
-          <div><small>BASE</small><strong>Chile / remoto</strong></div>
-          <div><small>PRIORIDAD</small><strong>Estabilidad</strong></div>
+      <aside class="profile-panel reveal" aria-label="Resumen profesional">
+        <div class="panel-status"><span class="pulse"></span> Portal profesional activo</div>
+        <h2>Pablo Elías Avendaño Miranda</h2>
+        <p>Ingeniero en Informática · Santiago, Chile</p>
+        <ul>
+          <li>Construyo y mantengo sistemas reales: sitios, servidores, automatizaciones, calendarios, herramientas internas y soporte técnico.</li>
+          <li>Trabajo con despliegues, monitoreo, documentación y continuidad operativa.</li>
+        </ul>
+        <div class="quick-links">
+          <a href="https://github.com/JackStar6677-1" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://github.com/DrakesCraft-Labs" target="_blank" rel="noopener">DrakesCraft Labs</a>
         </div>
       </aside>
     </section>
 
     <section class="ticker" aria-label="Especialidades">
       <div>
-        <span>BACKEND</span><b>+</b><span>INFRAESTRUCTURA</span><b>+</b><span>AUTOMATIZACION</span><b>+</b>
-        <span>SOPORTE TI</span><b>+</b><span>DESPLIEGUES</span><b>+</b><span>INTEGRACIONES</span><b>+</b>
-        <span>BACKEND</span><b>+</b><span>INFRAESTRUCTURA</span><b>+</b><span>AUTOMATIZACION</span><b>+</b>
+        <span>WEB</span><b>+</b><span>LINUX</span><b>+</b><span>DOCKER</span><b>+</b><span>BACKUPS</span><b>+</b>
+        <span>CALENDARIOS</span><b>+</b><span>SOPORTE TI</span><b>+</b><span>AUTOMATIZACIÓN</span><b>+</b>
+        <span>WEB</span><b>+</b><span>LINUX</span><b>+</b><span>DOCKER</span><b>+</b>
       </div>
     </section>
 
     <section class="section" id="servicios">
       <div class="section-heading reveal">
         <span>01 / Servicios</span>
-        <h2>Desde el problema hasta una solucion operativa.</h2>
-        <p>No vendo una tecnologia concreta. Primero entiendo lo que necesitas y despues elijo las piezas correctas.</p>
+        <h2>Servicios técnicos para operar mejor.</h2>
+        <p>Soluciones aterrizadas, mantenibles y pensadas para organizaciones que necesitan continuidad, claridad y soporte real.</p>
       </div>
-      <div class="service-grid">
-        <article class="service-card reveal">
-          <span class="service-number">01</span>
-          <h3>Desarrollo web y sistemas internos</h3>
-          <p>Landing pages, paneles, calendarios, formularios, APIs y herramientas adaptadas al flujo real de tu organizacion.</p>
-          <ul><li>Frontend y backend</li><li>Bases de datos</li><li>Integraciones</li></ul>
-        </article>
-        <article class="service-card reveal">
-          <span class="service-number">02</span>
-          <h3>Automatizacion de procesos</h3>
-          <p>Transformo tareas manuales y repetitivas en scripts y flujos auditables que ahorran tiempo y reducen errores.</p>
-          <ul><li>Python y PowerShell</li><li>Bots y APIs</li><li>Procesos operativos</li></ul>
-        </article>
-        <article class="service-card reveal">
-          <span class="service-number">03</span>
-          <h3>Servidores y despliegue</h3>
-          <p>Configuro servicios Linux, contenedores, redes privadas, monitoreo y publicacion segura de aplicaciones.</p>
-          <ul><li>Docker y Linux</li><li>Cloudflare Tunnel</li><li>Monitoreo y backups</li></ul>
-        </article>
-        <article class="service-card reveal">
-          <span class="service-number">04</span>
-          <h3>Soporte tecnico y hardware</h3>
-          <p>Diagnostico problemas de equipos, redes y software, explicando opciones y costos antes de intervenir.</p>
-          <ul><li>Diagnostico</li><li>Optimizacion</li><li>Continuidad operativa</li></ul>
-        </article>
-      </div>
+      <div class="service-grid" id="services-grid"></div>
     </section>
 
     <section class="section projects-section" id="proyectos">
       <div class="section-heading reveal">
-        <span>02 / Trabajo real</span>
-        <h2>Proyectos que ya viven fuera de mi computador.</h2>
+        <span>02 / Proyectos destacados</span>
+        <h2>Trabajo real, no solo prototipos.</h2>
       </div>
-      <div class="project-list">
-        <a class="project-card reveal" href="https://calendar.drakescraft.cl" target="_blank" rel="noopener">
-          <div class="project-meta"><span>Sistema institucional</span><b>01</b></div>
-          <h3>CCAACalendar</h3>
-          <p>Calendario multicentro con backend, persistencia, integraciones y despliegue en servidor propio.</p>
-          <div class="project-tags"><span>Backend</span><span>PostgreSQL</span><span>Docker</span></div>
-        </a>
-        <a class="project-card reveal" href="https://web.drakescraft.cl" target="_blank" rel="noopener">
-          <div class="project-meta"><span>Producto web</span><b>02</b></div>
-          <h3>DrakesCraft Web</h3>
-          <p>Portal publico con experiencia visual, telemetria, catalogo dinamico y backend ligero.</p>
-          <div class="project-tags"><span>Fastify</span><span>Frontend</span><span>Cloudflare</span></div>
-        </a>
-        <a class="project-card reveal" href="https://github.com/JackStar6677-1/VeyonScripts" target="_blank" rel="noopener">
-          <div class="project-meta"><span>Automatizacion TI</span><b>03</b></div>
-          <h3>VeyonScripts</h3>
-          <p>Herramientas de diagnostico, inventario y operacion para laboratorios y redes Windows.</p>
-          <div class="project-tags"><span>PowerShell</span><span>Windows</span><span>Redes</span></div>
-        </a>
-        <article class="project-card reveal">
-          <div class="project-meta"><span>Infraestructura</span><b>04</b></div>
-          <h3>Servidor star</h3>
-          <p>Plataforma Linux autoadministrada para servicios Docker, tuneles seguros y monitoreo continuo.</p>
-          <div class="project-tags"><span>Linux</span><span>Docker</span><span>Ops</span></div>
-        </article>
-      </div>
+      <div class="project-list" id="projects-list"></div>
     </section>
 
-    <section class="section method-section" id="metodo">
+    <section class="section split-section" id="experiencia">
       <div class="section-heading reveal">
-        <span>03 / Metodo</span>
-        <h2>Una forma de trabajar que deja menos sorpresas.</h2>
+        <span>03 / Experiencia real</span>
+        <h2>Trabajo con sistemas vivos</h2>
+        <p>Mi foco está en construir y mantener herramientas que se usan en entornos reales: colegios, servidores, comunidades, calendarios institucionales, laboratorios y plataformas web.</p>
       </div>
-      <div class="method-track">
-        <article class="reveal"><b>01</b><h3>Diagnostico</h3><p>Entiendo el problema, restricciones, usuarios y riesgos reales.</p></article>
-        <article class="reveal"><b>02</b><h3>Propuesta</h3><p>Defino alcance, arquitectura, costos y una ruta de implementacion.</p></article>
-        <article class="reveal"><b>03</b><h3>Construccion</h3><p>Implemento por etapas, con pruebas y visibilidad durante el proceso.</p></article>
-        <article class="reveal"><b>04</b><h3>Continuidad</h3><p>Entrego documentacion, respaldo, rollback y opciones de mantencion.</p></article>
+      <div class="experience-grid reveal">
+        <span>Soporte TI en terreno</span>
+        <span>Servidores Linux</span>
+        <span>Despliegues reales</span>
+        <span>Monitoreo</span>
+        <span>Automatización</span>
+        <span>Documentación</span>
+        <span>Mantenimiento</span>
       </div>
     </section>
 
-    <section class="section access-section">
-      <div class="access-copy reveal">
-        <span class="eyebrow"><span></span> Ecosistema activo</span>
-        <h2>Accesos publicos</h2>
-        <p>Una parte de mi trabajo puede revisarse directamente. Estos servicios y repositorios forman parte de mi entorno operativo.</p>
+    <section class="section stack-section">
+      <div class="section-heading reveal">
+        <span>04 / Stack</span>
+        <h2>Herramientas que uso para resolver.</h2>
       </div>
-      <div class="access-links reveal">
-        <a href="https://github.com/JackStar6677-1" target="_blank" rel="noopener"><span>GitHub</span><b>Codigo y proyectos ↗</b></a>
-        <a href="https://web.drakescraft.cl" target="_blank" rel="noopener"><span>DrakesCraft</span><b>Portal publico ↗</b></a>
-        <a href="https://calendar.drakescraft.cl" target="_blank" rel="noopener"><span>CCAACalendar</span><b>Sistema activo ↗</b></a>
-        <a href="https://www.linkedin.com/in/pablo-el%C3%ADas-avenda%C3%B1o-miranda-b4b93b39a/" target="_blank" rel="noopener"><span>LinkedIn</span><b>Perfil profesional ↗</b></a>
+      <div class="stack-list reveal" id="stack-list"></div>
+    </section>
+
+    <section class="section process-section" id="metodo">
+      <div class="section-heading reveal">
+        <span>05 / Proceso</span>
+        <h2>De diagnóstico a mantención.</h2>
+      </div>
+      <div class="process-track reveal">
+        <article><b>1</b><h3>Diagnóstico</h3><p>Entender problema, usuarios, restricciones y riesgo.</p></article>
+        <article><b>2</b><h3>Propuesta</h3><p>Definir alcance, tiempos, costo y ruta técnica.</p></article>
+        <article><b>3</b><h3>Implementación</h3><p>Construir por etapas con pruebas y visibilidad.</p></article>
+        <article><b>4</b><h3>Validación</h3><p>Probar con casos reales antes de cerrar.</p></article>
+        <article><b>5</b><h3>Mantención</h3><p>Documentar, respaldar y dejar continuidad.</p></article>
       </div>
     </section>
 
     <section class="section contact-section" id="contacto">
-      <div class="contact-card reveal">
-        <div>
-          <span class="eyebrow"><span></span> Cuéntame el problema</span>
-          <h2>Podemos partir con un diagnostico.</h2>
-          <p>Describe qué necesitas, qué está fallando o qué proceso quieres mejorar. Te responderé con preguntas concretas y una ruta posible.</p>
-        </div>
-        <div class="contact-actions">
-          <a class="button primary" href="mailto:pablo.elias.miranda.292003@gmail.com?subject=Solicitud%20de%20diagnostico">Enviar correo</a>
-          <button class="button secondary" id="copy-email" type="button" data-email="pablo.elias.miranda.292003@gmail.com">Copiar correo</button>
-          <small id="copy-status" aria-live="polite">Respuesta y alcance se coordinan antes de comenzar.</small>
+      <div class="contact-copy reveal">
+        <span class="eyebrow"><span></span> Contacto</span>
+        <h2>Partamos con un diagnóstico claro.</h2>
+        <p>Cuéntame qué necesitas construir, reparar, automatizar o mantener. Responderé con preguntas concretas y una ruta posible.</p>
+        <div class="contact-links">
+          <a href="mailto:pablo.elias.miranda.292003@gmail.com">pablo.elias.miranda.292003@gmail.com</a>
+          <a href="https://github.com/JackStar6677-1" target="_blank" rel="noopener">github.com/JackStar6677-1</a>
+          <a href="https://github.com/DrakesCraft-Labs" target="_blank" rel="noopener">github.com/DrakesCraft-Labs</a>
         </div>
       </div>
+      <form class="contact-form reveal" id="contact-form" novalidate>
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="honeypot">
+        <label>Nombre <input name="name" maxlength="80" required autocomplete="name"></label>
+        <label>Email <input name="email" type="email" maxlength="120" required autocomplete="email"></label>
+        <label>Tipo de servicio
+          <select name="service" required>
+            <option value="">Selecciona una opción</option>
+            <option>Soporte TI y mantención escolar</option>
+            <option>Desarrollo web y sistemas internos</option>
+            <option>Servidores e infraestructura</option>
+            <option>Automatización y scripts</option>
+            <option>Minecraft técnico / DrakesCraft</option>
+          </select>
+        </label>
+        <label>Mensaje <textarea name="message" maxlength="1200" required></textarea></label>
+        <div class="form-row">
+          <label>Presupuesto opcional <input name="budget" maxlength="80"></label>
+          <label>Urgencia opcional <input name="urgency" maxlength="80"></label>
+        </div>
+        <button class="button primary" type="submit">Preparar contacto</button>
+        <p class="form-status" id="form-status" aria-live="polite">No ingreses contraseñas ni información sensible.</p>
+      </form>
     </section>
   </main>
 
   <footer>
-    <div><strong>Jack / Pablo Elias</strong><span>Ingenieria, infraestructura y automatizacion.</span></div>
-    <div><span>Chile · <span id="year"></span></span><a href="#inicio">Volver arriba ↑</a></div>
+    <div>
+      <strong>Pablo Elías Miranda</strong>
+      <span>Servicios técnicos, desarrollo e infraestructura. Santiago, Chile.</span>
+    </div>
+    <div>
+      <span id="year"></span>
+      <a href="#inicio">Volver arriba</a>
+    </div>
   </footer>
 
-  <script src="script.js?v=1"></script>
+  <script src="/script.js?v=2"></script>
 </body>
 </html>
