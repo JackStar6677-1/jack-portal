@@ -65,11 +65,11 @@ SERVICES = [
 
 PROJECTS = [
     {
-        "name": "CCAACalendar",
+        "name": "CEMPUDLA",
         "category": "Calendarios",
         "description": "Plataforma multicentro para calendarios institucionales, reservas, Google Calendar y coordinación de espacios.",
         "tags": ["FastAPI", "PostgreSQL", "Google Calendar"],
-        "url": "https://calendar.drakescraft.cl",
+        "url": "https://cempudla.drakescraft.cl",
     },
     {
         "name": "CastelRoomKeeper",
