@@ -19,51 +19,74 @@ RATE_LIMIT_MAX = 5
 RATE_LIMIT: dict[str, list[float]] = {}
 
 PROFILE = {
-    "name": "Pablo Elías Avendaño Miranda",
-    "role": "Ingeniero en Informática",
-    "location": "Santiago, Chile",
-    "bio": "Construyo y mantengo sistemas reales: sitios, servidores, automatizaciones, calendarios, herramientas internas y soporte técnico.",
+    "name": "Jack / JackStar",
+    "role": "Software e infraestructura",
+    "location": "Chile",
+    "bio": "Construyo software, mantengo infraestructura y automatizo operaciones para ecosistemas que deben seguir funcionando.",
     "links": {
         "email": PUBLIC_EMAIL,
         "github": "https://github.com/JackStar6677-1",
         "drakescraftLabs": "https://github.com/DrakesCraft-Labs",
+        "drakescraft": "https://web.drakescraft.cl",
     },
 }
 
 SERVICES = [
     {
-        "area": "Soporte",
-        "title": "Soporte TI y mantención escolar",
-        "description": "Soporte operativo para equipos, salas, laboratorios y necesidades técnicas cotidianas.",
-        "items": ["computadores", "proyectores", "red", "cableado", "soporte operativo", "herramientas internas"],
+        "area": "Producto",
+        "title": "Software que resuelve problemas concretos",
+        "description": "Portales, sistemas internos, calendarios y herramientas que ordenan operaciones reales.",
+        "items": ["web", "paneles", "calendarios", "reservas", "formularios", "APIs"],
     },
     {
-        "area": "Software",
-        "title": "Desarrollo web y sistemas internos",
-        "description": "Sitios, paneles y flujos internos para ordenar información, reservas y coordinación.",
-        "items": ["sitios web", "paneles", "calendarios", "reservas", "formularios", "dashboards"],
+        "area": "Plataforma",
+        "title": "Infraestructura que soporta el producto",
+        "description": "Servicios Linux y Docker publicados de forma segura, con separación de responsabilidades y recuperación clara.",
+        "items": ["Linux", "Docker", "Cloudflare", "redes", "hardening", "despliegues"],
     },
     {
-        "area": "Infraestructura",
-        "title": "Servidores e infraestructura",
-        "description": "Servicios Linux y Docker con publicación segura, monitoreo, backups y hardening básico.",
-        "items": ["Linux", "Docker", "Cloudflare Tunnel", "monitoreo", "backups", "hardening básico"],
+        "area": "Operación",
+        "title": "Observabilidad y automatización",
+        "description": "Monitoreo, documentación y automatizaciones para reducir trabajo manual y detectar problemas temprano.",
+        "items": ["Python", "PowerShell", "alertas", "SQLite", "logs", "recuperación"],
     },
     {
-        "area": "Automatización",
-        "title": "Automatización y scripts",
-        "description": "Scripts y pequeñas integraciones para reducir trabajo repetitivo y errores manuales.",
-        "items": ["Python", "PowerShell", "reportes", "flujos repetitivos", "integración de APIs"],
-    },
-    {
-        "area": "Gaming técnico",
-        "title": "Minecraft técnico / DrakesCraft",
-        "description": "Mantenimiento y optimización de servidores Minecraft técnicos y ecosistemas de plugins.",
-        "items": ["Paper", "Slimefun", "plugins", "rendimiento", "mantenimiento de servidores"],
+        "area": "Ecosistema",
+        "title": "DrakesCraft y sus sistemas técnicos",
+        "description": "Una plataforma Minecraft con software propio, Slimefun mantenido, compras transaccionales y operación continua.",
+        "items": ["Paper", "Slimefun", "Odysseia", "Purchase Engine", "plugins", "comunidad"],
     },
 ]
 
 PROJECTS = [
+    {
+        "name": "Star",
+        "category": "Plataforma",
+        "description": "Centro operativo del ecosistema: servicios Docker, publicación, automatizaciones y administración de infraestructura.",
+        "tags": ["Linux", "Docker", "Cloudflare", "Operación"],
+        "url": "",
+    },
+    {
+        "name": "IA Hub",
+        "category": "Conocimiento operativo",
+        "description": "Fuente de verdad para arquitectura, servicios, decisiones, incidentes y procedimientos del ecosistema.",
+        "tags": ["Documentación", "Arquitectura", "Handoff"],
+        "url": "",
+    },
+    {
+        "name": "Star Monitor",
+        "category": "Observabilidad",
+        "description": "Monitor ligero y de solo lectura para comprobar servicios, registrar incidentes y conservar historial operativo.",
+        "tags": ["Python", "SQLite", "Alertas"],
+        "url": "",
+    },
+    {
+        "name": "Odysseia",
+        "category": "Minecraft técnico",
+        "description": "Plugin de plataforma para DrakesCraft con sistemas custom, integración de compras y entregas idempotentes.",
+        "tags": ["Java", "Paper", "SQLite", "Tebex"],
+        "url": "https://github.com/JackStar6677-1/Odysseia",
+    },
     {
         "name": "CEMPUDLA",
         "category": "Calendarios",
@@ -104,13 +127,22 @@ PROJECTS = [
         "category": "Minecraft técnico",
         "description": "Servidor Minecraft técnico con ecosistema de plugins, mantenimiento y ports personalizados.",
         "tags": ["Paper", "Slimefun", "Plugins"],
-        "url": "",
+        "url": "https://web.drakescraft.cl",
     },
 ]
 
 
 class Handler(SimpleHTTPRequestHandler):
     server_version = "JackPortal/1.0"
+
+    def end_headers(self) -> None:
+        self.send_header("X-Frame-Options", "SAMEORIGIN")
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("X-XSS-Protection", "1; mode=block")
+        self.send_header("Referrer-Policy", "strict-origin-when-cross-origin")
+        self.send_header("Permissions-Policy", "camera=(), microphone=(), geolocation=()")
+        super().end_headers()
+
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, directory=str(ROOT), **kwargs)

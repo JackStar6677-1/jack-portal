@@ -1,18 +1,18 @@
 # Jack Portal
 
-Portal profesional publico de Pablo Elias Avendano Miranda.
+Portfolio tecnico publico de Jack / JackStar.
 
 ## Objetivo
 
-Presentar servicios tecnicos de desarrollo web, infraestructura, automatizacion,
-soporte TI y sistemas internos para colegios, centros, comunidades y pequenas
-organizaciones.
+Presentar el trabajo real de software, infraestructura, automatizacion y
+operacion que sostiene el ecosistema Star, DrakesCraft, Odysseia e IA Hub.
 
 ## Stack
 
 - Python 3.12 con libreria estandar.
 - HTML/CSS/JavaScript sin dependencias de frontend.
 - Docker en `127.0.0.1:8082`.
+- Cloudflare Tunnel publica `jack.drakescraft.cl`.
 
 ## Endpoints
 
@@ -34,3 +34,7 @@ GitHub -> star -> jack-portal en 127.0.0.1:8082 -> Cloudflare Tunnel -> jack.dra
 
 El portal se mantiene separado de `drakescraft-web`, CCAACalendar, Vault,
 Webmin y paneles privados.
+
+El contenido publico evita rutas internas, credenciales y detalles operativos
+que no aportan al portfolio. Los proyectos privados se describen sin exponer
+endpoints de administracion.

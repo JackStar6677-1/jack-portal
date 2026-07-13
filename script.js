@@ -36,23 +36,24 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function loadPortalData() {
-  const [services, projects] = await Promise.all([
-    fetchJson('/api/services'),
-    fetchJson('/api/projects')
-  ]);
-
-  renderServices(services.services || []);
-  renderProjects(projects.projects || []);
+  const projects = await Promise.allSettled([fetchJson('/api/projects')]);
+  const projectsData = projects[0].status === 'fulfilled' ? projects[0].value : { projects: [] };
+  renderProjects(projectsData.projects || []);
   renderStack([
-    'Python', 'JavaScript', 'HTML/CSS', 'FastAPI', 'Node.js', 'Docker', 'Linux',
-    'Cloudflare Tunnel', 'PostgreSQL', 'GitHub', 'Veyon', 'PowerShell', 'Java', 'Paper', 'Slimefun'
+    'Python', 'Java', 'JavaScript', 'HTML/CSS', 'FastAPI', 'Node.js', 'Docker',
+    'Linux', 'Cloudflare Tunnel', 'SQLite', 'PostgreSQL', 'GitHub', 'PowerShell',
+    'Paper', 'Slimefun', 'Tebex', 'observabilidad'
   ]);
 }
 
 async function fetchJson(url) {
-  const response = await fetch(url, { headers: { Accept: 'application/json' } });
-  if (!response.ok) return {};
-  return response.json();
+  try {
+    const response = await fetch(url, { headers: { Accept: 'application/json' } });
+    if (!response.ok) return {};
+    return await response.json();
+  } catch (_error) {
+    return {};
+  }
 }
 
 function renderServices(services) {
