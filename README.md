@@ -26,7 +26,7 @@ El formulario de contacto valida payload, aplica honeypot y rate limit simple.
 No imprime mensajes completos ni credenciales en logs. La entrega queda en modo
 `mailto` para evitar hardcodear webhooks o secretos.
 
-## Deployment
+## Despliegue
 
 ```text
 GitHub -> star -> jack-portal en 127.0.0.1:8082 -> Cloudflare Tunnel -> jack.drakescraft.cl
