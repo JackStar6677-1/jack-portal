@@ -38,3 +38,5 @@ Webmin y paneles privados.
 El contenido publico evita rutas internas, credenciales y detalles operativos
 que no aportan al portfolio. Los proyectos privados se describen sin exponer
 endpoints de administracion.
+
+<!-- Updated for 2026 active baseline maintenance -->
