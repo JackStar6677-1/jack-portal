@@ -1,42 +1,33 @@
-# Jack Portal
+# Jack Portal · Portafolio Profesional de Alto Impacto
 
-Portfolio tecnico publico de Jack / JackStar.
+Portafolio técnico público de **Jack / JackStar** (`https://jack.drakescraft.cl`).
 
 ## Objetivo
 
-Presentar el trabajo real de software, infraestructura, automatizacion y
-operacion que sostiene el ecosistema Star, DrakesCraft, Odysseia e IA Hub.
+Exhibir la ingeniería de sistemas, arquitectura de software, clúster físico bare-metal (Star), desarrollo de alta concurrencia en Java 21 (DrakesCraft), enjambre de IA multiagente (SAORI) y plataformas de tecnología institucional/educativa.
 
 ## Stack
 
-- Python 3.12 con libreria estandar.
-- HTML/CSS/JavaScript sin dependencias de frontend.
-- Docker en `127.0.0.1:8082`.
-- Cloudflare Tunnel publica `jack.drakescraft.cl`.
+- **Servidor Backend**: Python 3.12 (librería estándar, sin dependencias externas pesadas).
+- **Frontend**: HTML5 semántico, CSS3 moderno con glassmorphism cyberpunk y JavaScript nativo.
+- **3D & Interactividad**: Three.js (constelación de partículas y esfera orbital reactiva al cursor).
+- **Terminal CLI**: Emulador interactivo con telemetría en tiempo real del clúster Star.
+- **Despliegue**: Docker en `127.0.0.1:8082`, servido a través de Cloudflare Tunnel hacia `jack.drakescraft.cl`.
 
 ## Endpoints
 
-- `GET /api/health`
-- `GET /api/profile`
-- `GET /api/services`
-- `GET /api/projects`
-- `POST /api/contact`
+- `GET /healthz`: Healthcheck estándar para Docker.
+- `GET /api/health`: Estado del servicio y tiempo de actividad (uptime).
+- `GET /api/profile`: Metadatos profesionales, enlaces de Discord, GitHub y estadísticas.
+- `GET /api/services`: Cuatro pilares de servicios (SRE, Minecraft Java 21, IA Soberana, Campus IT).
+- `GET /api/projects`: Catálogo enriquecido de proyectos con filtros de categoría.
+- `GET /api/telemetry`: Telemetría viva del clúster Star, SAORI Swarm y DrakesCraft.
+- `POST /api/contact`: Validación de solicitudes con honeypot antispam y rate limiting.
 
-El formulario de contacto valida payload, aplica honeypot y rate limit simple.
-No imprime mensajes completos ni credenciales en logs. La entrega queda en modo
-`mailto` para evitar hardcodear webhooks o secretos.
-
-## Despliegue
+## Arquitectura de Despliegue
 
 ```text
-GitHub -> star -> jack-portal en 127.0.0.1:8082 -> Cloudflare Tunnel -> jack.drakescraft.cl
+GitHub (JackStar6677-1/jack-portal) -> Star (/opt/stacks/repos/jack-portal)
+                                     -> Docker Compose (jack-portal en 127.0.0.1:8082)
+                                     -> Cloudflare Tunnel -> jack.drakescraft.cl
 ```
-
-El portal se mantiene separado de `drakescraft-web`, CCAACalendar, Vault,
-Webmin y paneles privados.
-
-El contenido publico evita rutas internas, credenciales y detalles operativos
-que no aportan al portfolio. Los proyectos privados se describen sin exponer
-endpoints de administracion.
-
-<!-- Updated for 2026 active baseline maintenance -->

@@ -8,7 +8,6 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any
 
-
 APP = "jack-portal"
 ENVIRONMENT = "production"
 PUBLIC_EMAIL = "pablo.elias.miranda.292003@gmail.com"
@@ -17,123 +16,218 @@ MAX_BODY_BYTES = 8_192
 RATE_LIMIT_WINDOW = 60 * 60
 RATE_LIMIT_MAX = 5
 RATE_LIMIT: dict[str, list[float]] = {}
+SERVER_START_TIME = time.time()
 
 PROFILE = {
     "name": "Jack / JackStar",
-    "role": "Software e infraestructura",
+    "handle": "JackStar6677-1",
+    "role": "Systems Engineer · Infrastructure Operator · Full-Stack Builder & Sovereign AI Creator",
     "location": "Chile",
-    "bio": "Construyo software, mantengo infraestructura y automatizo operaciones para ecosistemas que deben seguir funcionando.",
+    "bio": "Construyo arquitecturas de alta resiliencia, plataformas educativas, clusters de servidores físicos e inteligencia artificial autónoma que sobrevive a la producción.",
+    "philosophy": "Ambitious is good. Recoverable is better. Build it beautifully. Explain its state. Keep the rollback close.",
     "links": {
         "email": PUBLIC_EMAIL,
         "github": "https://github.com/JackStar6677-1",
         "drakescraftLabs": "https://github.com/DrakesCraft-Labs",
+        "discord": "https://discord.gg/rv3vtXZTk7",
         "drakescraft": "https://web.drakescraft.cl",
+    },
+    "stats": {
+        "pluginsMaintained": "100+",
+        "gameModes": 5,
+        "clusterNodes": ["Star", "Nexus", "Nova"],
+        "aiSwarm": ["Antigravity Gemini 3.8 Flash High", "Claude Code", "OpenAI Codex"],
+        "runtime": "Java 21 / Python 3.12 / Linux SRE",
     },
 }
 
 SERVICES = [
     {
-        "area": "Producto",
-        "title": "Software que resuelve problemas concretos",
-        "description": "Portales, sistemas internos, calendarios y herramientas que ordenan operaciones reales.",
-        "items": ["web", "paneles", "calendarios", "reservas", "formularios", "APIs"],
+        "area": "Infraestructura & SRE",
+        "title": "Arquitectura y Continuidad Operativa",
+        "description": "Servidores bare-metal Linux, virtualización Docker, redes malladas Tailscale, almacenamiento LVM y pipelines de recuperación ante desastres.",
+        "items": ["Linux SRE", "Docker & Compose", "Cloudflare Tunnels", "LVM RAID", "Backups Multi-Tier", "Observabilidad"],
     },
     {
-        "area": "Plataforma",
-        "title": "Infraestructura que soporta el producto",
-        "description": "Servicios Linux y Docker publicados de forma segura, con separación de responsabilidades y recuperación clara.",
-        "items": ["Linux", "Docker", "Cloudflare", "redes", "hardening", "despliegues"],
+        "area": "Ecosistema Minecraft Técnico",
+        "title": "Desarrollo de Alta Concurrencia en Java 21",
+        "description": "Red DrakesCraft con 5 modalidades, mitigación zero-loss de items, transacciones idempotentes Tebex y mantenimiento de más de 100 plugins.",
+        "items": ["Paper / Purpur 1.21.11", "Java 21", "Odysseia Engine", "BentoBox-Drake", "Slimefun Ecosystem", "Economía Balanceada"],
     },
     {
-        "area": "Operación",
-        "title": "Observabilidad y automatización",
-        "description": "Monitoreo, documentación y automatizaciones para reducir trabajo manual y detectar problemas temprano.",
-        "items": ["Python", "PowerShell", "alertas", "SQLite", "logs", "recuperación"],
+        "area": "Inteligencia Artificial Soberana",
+        "title": "Orquestación Multiagente & Automatización",
+        "description": "SAORI Core: enjambre de agentes autónomos coordinados bajo leases de concurrencia SQLite WAL con interfaces omnicanal de voz y texto.",
+        "items": ["Antigravity Gemini 3.8", "Claude Code", "OpenAI Codex", "Mineflayer Bot", "Discord AI", "WhatsApp Voice AI"],
     },
     {
-        "area": "Ecosistema",
-        "title": "DrakesCraft y sus sistemas técnicos",
-        "description": "Una plataforma Minecraft con software propio, Slimefun mantenido, compras transaccionales y operación continua.",
-        "items": ["Paper", "Slimefun", "Odysseia", "Purchase Engine", "plugins", "comunidad"],
+        "area": "Tecnología Educativa & Campus IT",
+        "title": "Sistemas Institucionales y de Laboratorio",
+        "description": "Herramientas de diagnóstico para aulas, plataformas de calendarios sin compartir credenciales maestras y automatización de capturas escolares.",
+        "items": ["Castel LabOps", "Veyon Automation", "CEMPUDLA PWA", "CastelRoomKeeper", "CredCam PySide6", "WinRM Remoting"],
     },
 ]
 
 PROJECTS = [
     {
-        "name": "Star",
-        "category": "Plataforma",
-        "description": "Centro operativo del ecosistema: servicios Docker, publicación, automatizaciones y administración de infraestructura.",
-        "tags": ["Linux", "Docker", "Cloudflare", "Operación"],
+        "id": "saori-core",
+        "name": "SAORI Core",
+        "category": "IA Soberana",
+        "category_id": "ai",
+        "badge": "SRE Swarm",
+        "featured": True,
+        "description": "Sistema operativo multiagente que orquesta Google Antigravity (Gemini 3.8 Flash High), Claude Code y OpenAI Codex con leases de concurrencia SQLite WAL (observe, develop, admin) y autorrecuperación en tiempo real.",
+        "tags": ["Python", "SQLite WAL", "Multi-Agent", "Autonomous SRE", "Gemini 3.8 High"],
+        "url": "https://github.com/JackStar6677-1/saori",
+    },
+    {
+        "id": "drakescraft-network",
+        "name": "DrakesCraft Network",
+        "category": "Minecraft Técnico",
+        "category_id": "gaming",
+        "badge": "Producción",
+        "featured": True,
+        "description": "Red masiva de alta concurrencia con 5 modalidades activas (Survival, OneBlock, SkyBlock, Vanilla, Lab), Paper/Purpur 1.21.11, soporte híbrido Java & Bedrock y más de 100 plugins optimizados.",
+        "tags": ["Paper 1.21.11", "Java 21", "Bedrock Híbrido", "Purpur", "5 Modalidades"],
+        "url": "https://web.drakescraft.cl",
+    },
+    {
+        "id": "odysseia-engine",
+        "name": "Odysseia Core Engine",
+        "category": "Minecraft Técnico",
+        "category_id": "gaming",
+        "badge": "Engine Central",
+        "featured": True,
+        "description": "Motor transaccional propietario para DrakesCraft con pasarela Tebex, entregas idempotentes de kits, jerarquía de rangos y aislamiento de inventarios cross-modality.",
+        "tags": ["Java 21", "Paper API", "SQLite", "Tebex API", "Idempotencia"],
+        "url": "https://github.com/DrakesCraft-Labs/Odysseia",
+    },
+    {
+        "id": "star-cluster",
+        "name": "Star Production Cluster",
+        "category": "Infraestructura & SRE",
+        "category_id": "infra",
+        "badge": "Homelab Bare-Metal",
+        "featured": True,
+        "description": "Centro de cómputo físico (Star, Nexus, Nova) con almacenamiento LVM distribuido en NVMe y HDD, red mallada privada Tailscale, microservicios Docker y túneles Cloudflare sin puertos expuestos.",
+        "tags": ["Linux Ubuntu", "Docker Compose", "LVM RAID", "Tailscale", "Cloudflare"],
         "url": "",
     },
     {
-        "name": "IA Hub",
-        "category": "Conocimiento operativo",
-        "description": "Fuente de verdad para arquitectura, servicios, decisiones, incidentes y procedimientos del ecosistema.",
-        "tags": ["Documentación", "Arquitectura", "Handoff"],
-        "url": "",
-    },
-    {
-        "name": "Star Monitor",
-        "category": "Observabilidad",
-        "description": "Monitor ligero y de solo lectura para comprobar servicios, registrar incidentes y conservar historial operativo.",
-        "tags": ["Python", "SQLite", "Alertas"],
-        "url": "",
-    },
-    {
-        "name": "Odysseia",
-        "category": "Minecraft técnico",
-        "description": "Plugin de plataforma para DrakesCraft con sistemas custom, integración de compras y entregas idempotentes.",
-        "tags": ["Java", "Paper", "SQLite", "Tebex"],
-        "url": "https://github.com/JackStar6677-1/Odysseia",
-    },
-    {
-        "name": "CEMPUDLA",
-        "category": "Calendarios",
-        "description": "Plataforma multicentro para calendarios institucionales, reservas, Google Calendar y coordinación de espacios.",
-        "tags": ["FastAPI", "PostgreSQL", "Google Calendar"],
-        "url": "https://cempudla.drakescraft.cl",
-    },
-    {
-        "name": "CastelRoomKeeper",
-        "category": "Reservas",
-        "description": "Sistema de calendario y reservas de salas para entorno escolar.",
-        "tags": ["Calendario", "Reservas", "Escolar"],
-        "url": "",
-    },
-    {
-        "name": "VeyonScripts",
-        "category": "Automatización TI",
-        "description": "Automatización y diagnóstico para laboratorios con Veyon, escaneo de red y mapeo operativo.",
-        "tags": ["PowerShell", "Veyon", "Redes"],
+        "id": "castel-labops",
+        "name": "Castel LabOps (VeyonScripts)",
+        "category": "Tecnología Educativa",
+        "category_id": "education",
+        "badge": "Campus IT",
+        "featured": True,
+        "description": "Suite operativa para la administración de laboratorios de computación escolares con Veyon, escaneo y mapeo dinámico de red, Wake-on-LAN y ejecución remota WinRM.",
+        "tags": ["PowerShell", "Veyon", "WinRM", "Wake-on-LAN", "Auditoría de Red"],
         "url": "https://github.com/JackStar6677-1/VeyonScripts",
     },
     {
-        "name": "Castel CredCam",
-        "category": "Aplicación local",
-        "description": "Aplicación local para captura y preparación de fotos tipo credencial por curso.",
-        "tags": ["Local", "Credenciales", "Cursos"],
+        "id": "bentobox-invswitcher",
+        "name": "BentoBox-Drake & InvSwitcher-Drake",
+        "category": "Minecraft Técnico",
+        "category_id": "gaming",
+        "badge": "Resilient Forks",
+        "featured": False,
+        "description": "Forks de ingeniería custom blindados contra pérdida de items mediante Paper Data Components nativos y aislamiento estricto de 5 inventarios, EnderChests y puntos de experiencia.",
+        "tags": ["Java 21", "Paper Data Components", "Zero-Loss", "Hardened Security"],
+        "url": "https://github.com/DrakesCraft-Labs/BentoBox-Drake",
+    },
+    {
+        "id": "cempudla-platform",
+        "name": "CEMPUDLA",
+        "category": "Tecnología Educativa",
+        "category_id": "education",
+        "badge": "Plataforma Institucional",
+        "featured": False,
+        "description": "Plataforma multicentro para calendarios de centros de estudiantes, actividades y reservas con autenticación individual por RUT y sincronización OAuth con Google Calendar sin compartir credenciales maestras.",
+        "tags": ["FastAPI", "PostgreSQL", "Google OAuth", "PWA", "RUT Auth"],
+        "url": "https://cempudla.drakescraft.cl",
+    },
+    {
+        "id": "campuscare-monitoring",
+        "name": "CampusCare Monitoring",
+        "category": "Tecnología Educativa",
+        "category_id": "education",
+        "badge": "Monitoreo",
+        "featured": False,
+        "description": "Sistema de monitoreo inteligente de dispositivos, métricas de hardware y mapeo físico espacial para laboratorios escolares con arquitectura PWA y soporte offline.",
+        "tags": ["Python", "PWA", "PostgreSQL", "Mapeo Físico", "REST API"],
         "url": "",
     },
     {
-        "name": "DrakesCraft Web",
-        "category": "Portal público",
-        "description": "Portal público del ecosistema DrakesCraft.",
-        "tags": ["Web", "Comunidad", "Portal"],
-        "url": "https://web.drakescraft.cl",
+        "id": "castel-roomkeeper",
+        "name": "CastelRoomKeeper",
+        "category": "Tecnología Educativa",
+        "category_id": "education",
+        "badge": "Reservas Escolares",
+        "featured": False,
+        "description": "Sistema de coordinación y reservas de salas de computación y espacios escolares, prevención de colisiones horarias, trazabilidad de solicitudes y notificaciones SMTP.",
+        "tags": ["PHP", "MySQL", "SMTP Alerts", "Auditoría de Cambios"],
+        "url": "",
     },
     {
-        "name": "DrakesCraft / Slimefun",
-        "category": "Minecraft técnico",
-        "description": "Servidor Minecraft técnico con ecosistema de plugins, mantenimiento y ports personalizados.",
-        "tags": ["Paper", "Slimefun", "Plugins"],
-        "url": "https://web.drakescraft.cl",
+        "id": "castel-credcam",
+        "name": "CastelCredCam",
+        "category": "Tecnología Educativa",
+        "category_id": "education",
+        "badge": "Desktop Studio",
+        "featured": False,
+        "description": "Aplicación de escritorio en PySide6/Qt para jornadas masivas de fotografía escolar tipo credencial, con detección y reencuadre facial automático, rosters Excel/CSV y copias espejo seguras.",
+        "tags": ["Python", "PySide6 Qt", "OpenCV", "CSV Rosters", "Mirror Backups"],
+        "url": "",
+    },
+    {
+        "id": "slimefun-ecosystem",
+        "name": "Slimefun Custom Addons Ecosystem",
+        "category": "Minecraft Técnico",
+        "category_id": "gaming",
+        "badge": "15+ Addons Propios",
+        "featured": False,
+        "description": "Colección y mantenimiento de más de 15 addons y ports personalizados de Slimefun (Quaptics, NetworksV6, SlimeTinker, SF-BetterChests, MagicXpansion, Galactifun) adaptados a Java 21 y balanceados para alta concurrencia.",
+        "tags": ["Java 21", "Slimefun4", "Quaptics", "NetworksV6", "SlimeTinker"],
+        "url": "https://github.com/DrakesCraft-Labs",
+    },
+    {
+        "id": "saori-omnichannel",
+        "name": "SAORI Omnichannel Interfaces",
+        "category": "IA Soberana",
+        "category_id": "ai",
+        "badge": "Presencia Viva",
+        "featured": False,
+        "description": "Capas de interacción para SAORI: presencia viva como avatar in-game en Minecraft (Mineflayer), bot de soporte y tickets en Discord, y agente en WhatsApp con transcripción de audios y síntesis de voz ElevenLabs.",
+        "tags": ["Mineflayer", "Discord.js", "WhatsApp Web", "ElevenLabs TTS", "Whisper"],
+        "url": "",
+    },
+    {
+        "id": "backup-pipeline",
+        "name": "Pipeline de Respaldo Híbrido",
+        "category": "Infraestructura & SRE",
+        "category_id": "infra",
+        "badge": "Resiliencia & DR",
+        "featured": False,
+        "description": "Automatización multi-tier con systemd timers para respaldos nocturnos incrementales a GitHub y sincronización masiva semanal del servidor completo (mundos, configs y bases de datos) hacia Google Drive con reportes a Discord.",
+        "tags": ["Python", "Systemd Timers", "Google Drive API", "Git", "Discord Webhooks"],
+        "url": "",
+    },
+    {
+        "id": "star-monitor",
+        "name": "Star Monitor & Observabilidad",
+        "category": "Infraestructura & SRE",
+        "category_id": "infra",
+        "badge": "Telemetría",
+        "featured": False,
+        "description": "Sistema ligero de observabilidad de solo lectura para supervisar la salud de contenedores Docker, latencia de red, carga de CPU/RAM y estado de servicios críticos con base de datos SQLite.",
+        "tags": ["Python", "SQLite", "Healthcheck", "Alertas", "Uptime"],
+        "url": "",
     },
 ]
 
 
 class Handler(SimpleHTTPRequestHandler):
-    server_version = "JackPortal/1.0"
+    server_version = "JackPortal/2.0"
 
     def end_headers(self) -> None:
         self.send_header("X-Frame-Options", "SAMEORIGIN")
@@ -143,19 +237,17 @@ class Handler(SimpleHTTPRequestHandler):
         self.send_header("Permissions-Policy", "camera=(), microphone=(), geolocation=()")
         super().end_headers()
 
-
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, directory=str(ROOT), **kwargs)
 
     def log_message(self, format: str, *args: Any) -> None:
-        if self.path == "/api/contact":
-            print(f"{self.address_string()} - contact request handled")
+        if self.path.startswith("/api/"):
             return
         super().log_message(format, *args)
 
     def do_GET(self) -> None:
         if self.path == "/api/health":
-            self.send_json({"status": "ok", "app": APP, "environment": ENVIRONMENT})
+            self.send_json({"status": "ok", "app": APP, "environment": ENVIRONMENT, "uptime_sec": int(time.time() - SERVER_START_TIME)})
             return
         if self.path == "/api/profile":
             self.send_json({"profile": PROFILE})
@@ -165,6 +257,33 @@ class Handler(SimpleHTTPRequestHandler):
             return
         if self.path == "/api/projects":
             self.send_json({"projects": PROJECTS})
+            return
+        if self.path == "/api/telemetry":
+            uptime = int(time.time() - SERVER_START_TIME)
+            self.send_json({
+                "cluster": {
+                    "master": "Star",
+                    "nodes": ["Star", "Nexus", "Nova"],
+                    "status": "OPERATIONAL",
+                    "uptime_sec": uptime,
+                    "storage": "LVM (NVMe + HDD)",
+                    "network": "Tailscale Mesh + Cloudflare Edge",
+                },
+                "saori_swarm": {
+                    "state": "ACTIVE",
+                    "primary_dev": "Antigravity (Gemini 3.8 Flash High)",
+                    "architect": "Claude Code",
+                    "integrator_qa": "Codex GPT-5.6",
+                    "locking": "SQLite WAL Mutex",
+                },
+                "drakescraft": {
+                    "version": "Paper / Purpur 1.21.11 (Java 21)",
+                    "game_modes": 5,
+                    "plugins_count": "100+",
+                    "slimefun_status": "Hardened & Optimized",
+                },
+                "timestamp": time.time(),
+            })
             return
         if self.path == "/healthz":
             self.send_response(HTTPStatus.OK)
@@ -201,7 +320,7 @@ class Handler(SimpleHTTPRequestHandler):
         self.send_json({
             "status": "accepted",
             "delivery": "mailto",
-            "message": "Solicitud validada. Usa el correo preparado para enviarla.",
+            "message": "Solicitud validada exitosamente. Se preparó la plantilla de contacto.",
         }, HTTPStatus.ACCEPTED)
 
     def rate_limit_ok(self) -> bool:

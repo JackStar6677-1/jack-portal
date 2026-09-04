@@ -1,190 +1,747 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Jack · Software, infraestructura y sistemas reales</title>
-  <meta name="description" content="Portfolio técnico de Jack: software, infraestructura Linux, Docker, automatización y operación de ecosistemas reales.">
-  <meta name="author" content="Jack">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jack / JackStar · Systems Engineer & Infrastructure Operator</title>
+  <meta name="description" content="Portafolio profesional de Jack (JackStar): Arquitectura de sistemas de alta resiliencia, infraestructura bare-metal en Star, ecosistema DrakesCraft en Java 21, IA multiagente SAORI y tecnología educativa.">
+  <meta name="author" content="Jack / JackStar">
   <meta name="theme-color" content="#07050f">
-  <link rel="canonical" href="https://jack.drakescraft.cl/">
-  <link rel="icon" type="image/svg+xml" href="/assets/jack-mark.svg">
-  <link rel="apple-touch-icon" href="/assets/jack-mark.svg">
+
+  <!-- Open Graph / Social Media -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Jack · Software, infraestructura y sistemas reales">
-  <meta property="og:description" content="Software, infraestructura Linux, Docker, automatización y operación de ecosistemas reales.">
-  <meta property="og:url" content="https://jack.drakescraft.cl/">
-  <meta property="og:site_name" content="Jack">
+  <meta property="og:url" content="https://jack.drakescraft.cl">
+  <meta property="og:title" content="Jack / JackStar · Systems Engineer & Infrastructure Operator">
+  <meta property="og:description" content="Sistemas de alta resiliencia, infraestructura Linux en Star, DrakesCraft en Java 21, enjambre de IA SAORI y tecnología institucional.">
+  <meta property="og:image" content="/assets/ecosystem-orbit.svg">
+
+  <link rel="icon" type="image/svg+xml" href="/assets/jack-mark.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=4">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css?v=20260904">
 </head>
 <body>
-  <canvas id="signal-field" aria-hidden="true"></canvas>
-  <div class="page-glow" aria-hidden="true"></div>
-  <div class="progress" id="progress" aria-hidden="true"></div>
+  <a href="#proyectos" class="skip-link">Saltar al contenido principal</a>
 
-  <header class="site-header">
-    <a class="brand" href="#inicio" aria-label="Ir al inicio">
-      <span class="brand-mark">J</span>
-      <span>
-        <strong>Jack / JackStar</strong>
-        <small>Software · infraestructura · operación</small>
-      </span>
-    </a>
-    <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
-      <span></span><span></span>
-    </button>
-    <nav class="nav-links" aria-label="Principal">
-      <a href="#sistemas">Sistemas</a>
-      <a href="#proyectos">Proyectos</a>
-      <a href="#stack">Stack</a>
-      <a href="#contacto" class="nav-cta">Contacto</a>
-    </nav>
+  <!-- Canvas 3D Interactivo de Three.js -->
+  <canvas id="bg-canvas-3d" aria-hidden="true"></canvas>
+  <div class="grid-overlay" aria-hidden="true"></div>
+  <div class="radial-glow glow-top" aria-hidden="true"></div>
+  <div class="radial-glow glow-bottom" aria-hidden="true"></div>
+
+  <header class="header">
+    <div class="header-inner">
+      <a href="#inicio" class="brand" aria-label="JackStar - Inicio">
+        <span class="brand-mark">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <polygon points="20,2 38,12 38,28 20,38 2,28 2,12" stroke="currentColor" stroke-width="2" fill="none"/>
+            <circle cx="20" cy="20" r="5" fill="var(--cyan)"/>
+            <line x1="20" y1="2" x2="20" y2="15" stroke="var(--purple)" stroke-width="2"/>
+            <line x1="38" y1="28" x2="25" y2="22" stroke="var(--purple)" stroke-width="2"/>
+            <line x1="2" y1="28" x2="15" y2="22" stroke="var(--purple)" stroke-width="2"/>
+          </svg>
+        </span>
+        <span class="brand-name">
+          <strong>JACK</strong>
+          <small>JACKSTAR</small>
+        </span>
+      </a>
+
+      <div class="status-pill" title="Clúster Star Operativo">
+        <span class="pulse-dot"></span>
+        <span class="status-text">STAR CLUSTER · OPERATIONAL</span>
+      </div>
+
+      <nav class="nav-links" id="nav-menu" aria-label="Navegación principal">
+        <a href="#inicio">Inicio</a>
+        <a href="#ecosistema">Ecosistema</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#terminal">Terminal</a>
+        <a href="#stack">Stack</a>
+        <a href="#filosofia">Doctrina</a>
+        <a href="#contacto" class="nav-cta">Contacto</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener noreferrer" class="social-icon-btn discord-btn" title="Servidor Oficial de Discord (discord.gg/rv3vtXZTk7)">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true">
+            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+          </svg>
+          <span class="btn-tooltip">Discord Oficial</span>
+        </a>
+        <a href="https://github.com/JackStar6677-1" target="_blank" rel="noopener noreferrer" class="social-icon-btn github-btn" title="GitHub de Jack (JackStar6677-1)">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
+          <span class="btn-tooltip">GitHub</span>
+        </a>
+        <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú de navegación">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="scroll-progress-bar" id="scroll-progress" aria-hidden="true"></div>
   </header>
 
-  <main>
+  <main id="main-content">
+    <!-- Hero Section -->
     <section class="hero section" id="inicio">
-      <div class="hero-copy reveal">
-        <p class="eyebrow"><span></span> Software · infraestructura · automatización · operación</p>
-        <h1>Construyo sistemas que siguen funcionando.</h1>
-        <p class="hero-lead">
-          Desarrollo software, mantengo infraestructura y automatizo operaciones. DrakesCraft es una
-          parte visible de un ecosistema técnico construido y operado desde Star.
+      <div class="hero-content">
+        <div class="hero-badges">
+          <span class="badge-pill pulse-badge">
+            <span class="pulse-core"></span>
+            SOVEREIGN ARCHITECT & SYSTEMS SRE
+          </span>
+          <span class="badge-pill mono">Santiago, Chile · Online</span>
+        </div>
+
+        <h1 class="hero-title">
+          Construyo sistemas que <span class="gradient-text">sobreviven a la realidad</span>.
+        </h1>
+
+        <p class="hero-subtitle">
+          Ingeniero de sistemas, desarrollador full-stack y operador de infraestructura.
+          Desde el clúster físico <strong>Star</strong> opero redes de alta concurrencia en <strong>Java 21 (DrakesCraft)</strong>,
+          el enjambre de IA multiagente <strong>SAORI</strong> y plataformas de tecnología educativa para campus institucionales.
         </p>
-        <div class="hero-actions">
-          <a class="button primary" href="#proyectos">Explorar proyectos</a>
-          <a class="button secondary" href="https://github.com/JackStar6677-1" target="_blank" rel="noopener">Ver GitHub</a>
-          <a class="button ghost" href="#contacto">Hablemos</a>
+
+        <div class="doctrine-box">
+          <span class="doctrine-tag">DOCTRINA TÉCNICA</span>
+          <p class="doctrine-quote">
+            "Ambitious is good. Recoverable is better. Build it beautifully. Explain its state. Keep the rollback close."
+          </p>
+        </div>
+
+        <div class="hero-ctas">
+          <a href="#proyectos" class="btn btn-primary">
+            <span>Explorar Proyectos</span>
+            <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+          </a>
+          <a href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener noreferrer" class="btn btn-discord">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+            <span>Discord Oficial</span>
+          </a>
+          <a href="https://github.com/JackStar6677-1" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            <span>GitHub Profile</span>
+          </a>
+          <a href="#contacto" class="btn btn-ghost">
+            <span>Hablemos</span>
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-card">
+            <span class="stat-number">100+</span>
+            <span class="stat-label">Plugins & Addons Java 21</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">5</span>
+            <span class="stat-label">Modalidades en Producción</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">Tri-Agent</span>
+            <span class="stat-label">Enjambre SAORI (AI Swarm)</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Recuperable & Auditado</span>
+          </div>
         </div>
       </div>
 
-      <aside class="profile-panel reveal" aria-label="Resumen profesional">
-        <div class="hero-visual" data-tilt>
-          <img src="/assets/ecosystem-orbit.svg" alt="Diagrama visual del ecosistema técnico de Jack" width="520" height="320">
+      <!-- 3D Interactive Telemetry Card -->
+      <aside class="hero-panel" data-tilt aria-label="Telemetría en tiempo real del clúster Star">
+        <div class="panel-header">
+          <span class="panel-indicator"></span>
+          <span class="panel-title">TELEMETRY · STAR SYSTEM CLUSTER</span>
+          <span class="panel-tag">LIVE SRE</span>
         </div>
-        <div class="panel-status"><span class="pulse"></span> Ecosistema en operación</div>
-        <h2>Jack / JackStar</h2>
-        <p>Software e infraestructura · Chile</p>
-        <ul>
-          <li>Construyo productos, plataformas internas y herramientas que deben mantenerse útiles con el tiempo.</li>
-          <li>Trabajo desde el código hasta el despliegue: Linux, Docker, observabilidad y continuidad operativa.</li>
-        </ul>
-        <div class="quick-links">
-          <a href="https://github.com/JackStar6677-1" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://github.com/DrakesCraft-Labs" target="_blank" rel="noopener">DrakesCraft Labs</a>
+
+        <div class="panel-interactive-graphic" id="hero-graphic">
+          <div class="orbit-visual">
+            <div class="orbit-ring ring-1"></div>
+            <div class="orbit-ring ring-2"></div>
+            <div class="orbit-center">
+              <span class="center-star">STAR</span>
+            </div>
+            <div class="orbit-node node-saori" title="SAORI AI Swarm">SAORI</div>
+            <div class="orbit-node node-drakes" title="DrakesCraft Network">DRAKES</div>
+            <div class="orbit-node node-campus" title="Campus Educational IT">CAMPUS</div>
+            <div class="orbit-node node-docker" title="Docker Stacks">STACKS</div>
+          </div>
+        </div>
+
+        <div class="panel-stats-list">
+          <div class="panel-row">
+            <span class="row-label">Nodo Maestro</span>
+            <span class="row-val highlight">Star (Ubuntu Linux / Bare-Metal)</span>
+          </div>
+          <div class="panel-row">
+            <span class="row-label">Almacenamiento</span>
+            <span class="row-val">LVM Volume Group (NVMe + HDD)</span>
+          </div>
+          <div class="panel-row">
+            <span class="row-label">Red & Túneles</span>
+            <span class="row-val">Tailscale Mesh + Cloudflare Tunnel</span>
+          </div>
+          <div class="panel-row">
+            <span class="row-label">Backups Pipeline</span>
+            <span class="row-val status-green">Activo (GitHub + Google Drive)</span>
+          </div>
+          <div class="panel-row">
+            <span class="row-label">Enjambre de IA</span>
+            <span class="row-val status-purple">Antigravity · Claude · Codex</span>
+          </div>
+        </div>
+
+        <div class="panel-footer">
+          <a href="#terminal" class="panel-link">Abrir Consola Star CLI →</a>
         </div>
       </aside>
     </section>
 
-    <section class="ticker" aria-label="Especialidades">
-      <div>
-        <span>WEB</span><b>+</b><span>LINUX</span><b>+</b><span>DOCKER</span><b>+</b><span>BACKUPS</span><b>+</b>
-        <span>CALENDARIOS</span><b>+</b><span>SOPORTE TI</span><b>+</b><span>AUTOMATIZACIÓN</span><b>+</b>
-        <span>WEB</span><b>+</b><span>LINUX</span><b>+</b><span>DOCKER</span><b>+</b>
+    <!-- Ticker Section -->
+    <section class="ticker" aria-label="Especialidades tecnológicas">
+      <div class="ticker-track">
+        <span>JAVA 21</span><b>·</b><span>PURPUR 1.21.11</span><b>·</b><span>LINUX SRE</span><b>·</b>
+        <span>DOCKER COMPOSE</span><b>·</b><span>SAORI MULTI-AGENT</span><b>·</b><span>ANTIGRAVITY GEMINI 3.8</span><b>·</b>
+        <span>SQLITE WAL</span><b>·</b><span>CLOUDFLARE TUNNEL</span><b>·</b><span>TAILSCALE MESH</span><b>·</b>
+        <span>THREE.JS 3D</span><b>·</b><span>TEBEX GATEWAY</span><b>·</b><span>CAMPUS IT LABS</span><b>·</b>
+        <span>VEYON AUTOMATION</span><b>·</b><span>PYSIDE6 QT</span><b>·</b><span>DATA INTEGRITY</span><b>·</b>
+        <span>JAVA 21</span><b>·</b><span>PURPUR 1.21.11</span><b>·</b><span>LINUX SRE</span><b>·</b>
+        <span>DOCKER COMPOSE</span><b>·</b><span>SAORI MULTI-AGENT</span><b>·</b><span>ANTIGRAVITY GEMINI 3.8</span><b>·</b>
       </div>
     </section>
 
-    <section class="section systems-section" id="sistemas">
-      <div class="section-heading reveal">
-        <span>01 / Sistemas</span>
-        <h2>Un ecosistema, tres capas.</h2>
-        <p>Los proyectos públicos son la superficie. Debajo hay plataformas, automatizaciones y una operación que los mantiene vivos.</p>
+    <!-- Las 4 Capas del Ecosistema -->
+    <section class="section ecosystem-section" id="ecosistema">
+      <div class="section-heading">
+        <span class="section-tag">01 / ARQUITECTURA</span>
+        <h2>Las cuatro capas de un ecosistema que no duerme.</h2>
+        <p>Los proyectos públicos son la superficie visible. Debajo opera una infraestructura coordinada con disciplina de SRE, código propio y automatización continua.</p>
       </div>
-      <div class="system-map reveal">
-        <article><span>01</span><h3>Productos</h3><p>Portales, calendarios, herramientas internas y DrakesCraft: software que resuelve problemas concretos.</p></article>
-        <article><span>02</span><h3>Plataforma</h3><p>Star, Docker, Cloudflare, IA Hub, Nova y Nexus: la base donde los servicios se despliegan y se coordinan.</p></article>
-        <article><span>03</span><h3>Operación</h3><p>Star Monitor, backups, documentación y automatizaciones para saber qué ocurre y recuperarse cuando algo falla.</p></article>
+
+      <div class="layers-grid">
+        <article class="layer-card" data-tilt>
+          <div class="layer-header">
+            <span class="layer-num">01</span>
+            <span class="layer-badge">Bare-Metal & Red</span>
+          </div>
+          <h3>Clúster Star & Infraestructura SRE</h3>
+          <p>Servidores físicos propios (Star, Nexus, Nova) con almacenamiento LVM en NVMe y HDD, red privada mallada Tailscale y túneles seguros Cloudflare sin puertos abiertos al exterior.</p>
+          <ul class="layer-features">
+            <li>LVM Thin Pools & RAID de almacenamiento masivo</li>
+            <li>Despliegues contenerizados en Docker con healthchecks</li>
+            <li>Pipelines de respaldo automatizados a GitHub y Google Drive</li>
+            <li>Star Monitor: observabilidad ligera en SQLite</li>
+          </ul>
+        </article>
+
+        <article class="layer-card" data-tilt>
+          <div class="layer-header">
+            <span class="layer-num">02</span>
+            <span class="layer-badge">Alta Concurrencia</span>
+          </div>
+          <h3>DrakesCraft Labs & Java 21</h3>
+          <p>Red masiva de Minecraft en Purpur 1.21.11 con 5 modalidades vivas. Desarrollo de software central, modernización a Java 21, mitigación de duplicaciones y estabilidad económica.</p>
+          <ul class="layer-features">
+            <li><strong>Odysseia Engine</strong>: Transacciones Tebex idempotentes</li>
+            <li><strong>BentoBox-Drake</strong>: Deserialización Paper Data Components</li>
+            <li><strong>InvSwitcher-Drake</strong>: Aislamiento estricto de inventarios y XP</li>
+            <li>+100 plugins mantenidos y ecosistema Slimefun propio</li>
+          </ul>
+        </article>
+
+        <article class="layer-card" data-tilt>
+          <div class="layer-header">
+            <span class="layer-num">03</span>
+            <span class="layer-badge">SRE Autónomo</span>
+          </div>
+          <h3>IA Soberana (SAORI Core)</h3>
+          <p>Sistema operativo multiagente que coordina enjambres de IA (Google Antigravity con Gemini 3.8 Flash High, Claude Code y OpenAI Codex) bajo locks de concurrencia en SQLite WAL.</p>
+          <ul class="layer-features">
+            <li>Leases de ejecución: <code>observe</code>, <code>develop</code>, <code>admin</code></li>
+            <li>In-Game Avatar: Bot de Minecraft con Mineflayer</li>
+            <li>Soporte omnicanal: Discord bot y WhatsApp Voice con ElevenLabs</li>
+            <li>Auto-recuperación ante incidentes y análisis continuo de telemetría</li>
+          </ul>
+        </article>
+
+        <article class="layer-card" data-tilt>
+          <div class="layer-header">
+            <span class="layer-num">04</span>
+            <span class="layer-badge">Impacto Institucional</span>
+          </div>
+          <h3>Tecnología Educativa & Campus IT</h3>
+          <p>Sistemas institucionales en producción para el Colegio Castelgandolfo y centros estudiantiles. Automatización de laboratorios, reservas sin contraseñas compartidas y auditoría.</p>
+          <ul class="layer-features">
+            <li><strong>Castel LabOps</strong>: Veyon, Wake-on-LAN y WinRM remoting</li>
+            <li><strong>CEMPUDLA</strong>: PWA de calendarios con Google OAuth y auth RUT</li>
+            <li><strong>CastelRoomKeeper</strong>: Gestión de salas y prevención de colisiones</li>
+            <li><strong>CastelCredCam</strong>: App PySide6 Qt con auto-encuadre facial</li>
+          </ul>
+        </article>
       </div>
     </section>
 
+    <!-- Proyectos Showcase Filtrable -->
     <section class="section projects-section" id="proyectos">
-      <div class="section-heading reveal">
-        <span>02 / Proyectos</span>
-        <h2>Lo que existe detrás de la pantalla.</h2>
+      <div class="section-heading">
+        <span class="section-tag">02 / PORTAFOLIO TÉCNICO</span>
+        <h2>Ingeniería probada en producción.</h2>
+        <p>Software desplegado, con código versionado, métricas reales y usuarios en vivo. Filtra por especialidad para explorar la arquitectura de cada sistema.</p>
       </div>
-      <div class="project-list" id="projects-list"></div>
+
+      <!-- Filtros de categoría -->
+      <div class="project-filters" role="tablist" aria-label="Filtrar proyectos por categoría">
+        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">Todos</button>
+        <button class="filter-btn" data-filter="gaming" role="tab" aria-selected="false">Minecraft Técnico (Java 21)</button>
+        <button class="filter-btn" data-filter="infra" role="tab" aria-selected="false">Infraestructura & SRE</button>
+        <button class="filter-btn" data-filter="ai" role="tab" aria-selected="false">IA Soberana (SAORI)</button>
+        <button class="filter-btn" data-filter="education" role="tab" aria-selected="false">Tecnología Educativa</button>
+      </div>
+
+      <!-- Grid de proyectos interactivo -->
+      <div class="projects-grid" id="projects-container">
+        <!-- Renderizado dinámicamente mediante script.js con fallback HTML -->
+        <article class="project-card" data-category="ai" data-tilt>
+          <div class="card-meta">
+            <span class="category-badge badge-ai">IA Soberana</span>
+            <span class="status-pill-small">SRE Swarm</span>
+          </div>
+          <h3>SAORI Core</h3>
+          <p>Sistema operativo multiagente que orquesta Google Antigravity (Gemini 3.8 Flash High), Claude Code y OpenAI Codex con leases de concurrencia SQLite WAL (observe, develop, admin) y autorrecuperación en tiempo real.</p>
+          <div class="tags-cloud">
+            <span>Python</span><span>SQLite WAL</span><span>Multi-Agent</span><span>Autonomous SRE</span><span>Gemini 3.8</span>
+          </div>
+          <div class="card-actions">
+            <a href="https://github.com/JackStar6677-1/saori" target="_blank" rel="noopener noreferrer" class="card-link">Ver Código en GitHub →</a>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="gaming" data-tilt>
+          <div class="card-meta">
+            <span class="category-badge badge-gaming">Minecraft Técnico</span>
+            <span class="status-pill-small">Producción Activa</span>
+          </div>
+          <h3>DrakesCraft Network</h3>
+          <p>Red masiva de alta concurrencia con 5 modalidades activas (Survival, OneBlock, SkyBlock, Vanilla, Lab), Paper/Purpur 1.21.11, soporte híbrido Java & Bedrock y más de 100 plugins optimizados.</p>
+          <div class="tags-cloud">
+            <span>Paper 1.21.11</span><span>Java 21</span><span>Bedrock Híbrido</span><span>Purpur</span><span>5 Modalidades</span>
+          </div>
+          <div class="card-actions">
+            <a href="https://web.drakescraft.cl" target="_blank" rel="noopener noreferrer" class="card-link">Explorar Red Web →</a>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="gaming" data-tilt>
+          <div class="card-meta">
+            <span class="category-badge badge-gaming">Minecraft Técnico</span>
+            <span class="status-pill-small">Engine Central</span>
+          </div>
+          <h3>Odysseia Core Engine</h3>
+          <p>Motor transaccional propietario para DrakesCraft con pasarela Tebex, entregas idempotentes de kits, jerarquía de rangos y aislamiento de inventarios cross-modality.</p>
+          <div class="tags-cloud">
+            <span>Java 21</span><span>Paper API</span><span>SQLite</span><span>Tebex API</span><span>Idempotencia</span>
+          </div>
+          <div class="card-actions">
+            <a href="https://github.com/DrakesCraft-Labs/Odysseia" target="_blank" rel="noopener noreferrer" class="card-link">Ver Repositorio →</a>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="infra" data-tilt>
+          <div class="card-meta">
+            <span class="category-badge badge-infra">Infraestructura & SRE</span>
+            <span class="status-pill-small">Bare-Metal Clúster</span>
+          </div>
+          <h3>Star Production Cluster</h3>
+          <p>Centro de cómputo físico (Star, Nexus, Nova) con almacenamiento LVM distribuido en NVMe y HDD, red mallada privada Tailscale, microservicios Docker y túneles Cloudflare sin puertos expuestos.</p>
+          <div class="tags-cloud">
+            <span>Linux Ubuntu</span><span>Docker Compose</span><span>LVM RAID</span><span>Tailscale</span><span>Cloudflare</span>
+          </div>
+          <div class="card-actions">
+            <span class="card-status-text">Operación Privada 24/7</span>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="education" data-tilt>
+          <div class="card-meta">
+            <span class="category-badge badge-education">Tecnología Educativa</span>
+            <span class="status-pill-small">Campus IT</span>
+          </div>
+          <h3>Castel LabOps (VeyonScripts)</h3>
+          <p>Suite operativa para la administración de laboratorios de computación escolares con Veyon, escaneo y mapeo dinámico de red, Wake-on-LAN y ejecución remota WinRM.</p>
+          <div class="tags-cloud">
+            <span>PowerShell</span><span>Veyon</span><span>WinRM</span><span>Wake-on-LAN</span><span>Auditoría de Red</span>
+          </div>
+          <div class="card-actions">
+            <a href="https://github.com/JackStar6677-1/VeyonScripts" target="_blank" rel="noopener noreferrer" class="card-link">Ver Repositorio →</a>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="gaming" data-tilt>
+          <div class="card-meta">
+            <span class="category-badge badge-gaming">Minecraft Técnico</span>
+            <span class="status-pill-small">Resilient Fork</span>
+          </div>
+          <h3>BentoBox-Drake & InvSwitcher-Drake</h3>
+          <p>Forks de ingeniería custom blindados contra pérdida de items mediante Paper Data Components nativos y aislamiento estricto de 5 inventarios, EnderChests y experiencia.</p>
+          <div class="tags-cloud">
+            <span>Java 21</span><span>Paper Data Components</span><span>Zero-Loss</span><span>Hardened Security</span>
+          </div>
+          <div class="card-actions">
+            <a href="https://github.com/DrakesCraft-Labs/BentoBox-Drake" target="_blank" rel="noopener noreferrer" class="card-link">Ver BentoBox-Drake →</a>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="education" data-tilt>
+          <div class="card-meta">
+            <span class="category-badge badge-education">Tecnología Educativa</span>
+            <span class="status-pill-small">Plataforma Web</span>
+          </div>
+          <h3>CEMPUDLA</h3>
+          <p>Plataforma multicentro para calendarios de centros de estudiantes, actividades y reservas con autenticación individual por RUT y sincronización OAuth con Google Calendar sin compartir contraseñas maestras.</p>
+          <div class="tags-cloud">
+            <span>FastAPI</span><span>PostgreSQL</span><span>Google OAuth</span><span>PWA</span><span>RUT Auth</span>
+          </div>
+          <div class="card-actions">
+            <a href="https://cempudla.drakescraft.cl" target="_blank" rel="noopener noreferrer" class="card-link">Ver Plataforma CEMPUDLA →</a>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="education" data-tilt>
+          <div class="card-meta">
+            <span class="category-badge badge-education">Tecnología Educativa</span>
+            <span class="status-pill-small">Desktop Studio</span>
+          </div>
+          <h3>CastelCredCam</h3>
+          <p>Aplicación de escritorio en PySide6/Qt para jornadas masivas de fotografía escolar tipo credencial, con detección y reencuadre facial automático, rosters Excel/CSV y copias espejo seguras.</p>
+          <div class="tags-cloud">
+            <span>Python</span><span>PySide6 Qt</span><span>OpenCV</span><span>CSV Rosters</span><span>Mirror Backups</span>
+          </div>
+          <div class="card-actions">
+            <span class="card-status-text">Herramienta Institucional</span>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <section class="section split-section" id="experiencia">
-      <div class="section-heading reveal">
-        <span>03 / Enfoque</span>
-        <h2>Ingeniería de extremo a extremo.</h2>
-        <p>Diseño, desarrollo, despliegue y mantenimiento forman parte del mismo trabajo. La calidad también se mide por lo que ocurre después de publicar.</p>
+    <!-- Star Terminal CLI Interactivo -->
+    <section class="section terminal-section" id="terminal">
+      <div class="section-heading">
+        <span class="section-tag">03 / CONSOLA STAR CLI</span>
+        <h2>Interacción directa con la telemetría del clúster.</h2>
+        <p>Haz clic en los comandos rápidos o escribe tus propias instrucciones para consultar en vivo el estado del ecosistema.</p>
       </div>
-      <div class="experience-grid reveal">
-        <span>Arquitectura y código</span><span>Servidores Linux</span><span>Docker y despliegues</span>
-        <span>Observabilidad</span><span>Automatización</span><span>Documentación viva</span><span>Continuidad operativa</span>
+
+      <div class="terminal-container" data-tilt>
+        <div class="terminal-bar">
+          <div class="terminal-dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <div class="terminal-title">star@cluster:~ (bash) — SRE Session</div>
+          <div class="terminal-status">CONNECTED · 127.0.0.1:8082</div>
+        </div>
+
+        <div class="terminal-body" id="terminal-body" role="region" aria-label="Salida de consola interactiva">
+          <div class="term-line output system-greet">
+            <span>=== STAR INFRASTRUCTURE CONSOLE [v2.4-SRE] ===</span>
+            <span>Nodo: Star (Ubuntu 24.04 LTS x86_64) · Kernel: 6.8.0-generic</span>
+            <span>Ecosistema activo: DrakesCraft 1.21.11 · SAORI Swarm · Docker Stacks</span>
+            <span>Escribe un comando o haz clic en los accesos rápidos a continuación.</span>
+          </div>
+          <div class="term-line command-echo">
+            <span class="prompt">jack@star:~$</span> <span class="cmd-text">cluster-telemetry --all</span>
+          </div>
+          <div class="term-line output">
+            <span class="term-success">[OK] Clúster Físico: Star (Maestro), Nexus (Espejo), Nova (Respaldo)</span>
+            <span>[OK] Almacenamiento: LVM ubuntu-vg (NVMe + HDD) · Estado: NOMINAL</span>
+            <span>[OK] Red: Tailscale Mesh cifrado + Cloudflare Tunnels (Cero puertos abiertos)</span>
+            <span>[OK] IA Swarm: Antigravity Gemini 3.8 Flash High (Activo) · Claude · Codex</span>
+            <span>[OK] Backups: Pipeline híbrido nocturno (GitHub) + semanal masivo (Google Drive)</span>
+          </div>
+        </div>
+
+        <div class="terminal-shortcuts" aria-label="Comandos rápidos de la terminal">
+          <span class="shortcuts-label">Comandos rápidos:</span>
+          <button class="term-btn" data-cmd="status">status</button>
+          <button class="term-btn" data-cmd="saori">saori</button>
+          <button class="term-btn" data-cmd="drakescraft">drakescraft</button>
+          <button class="term-btn" data-cmd="education">education</button>
+          <button class="term-btn" data-cmd="backups">backups</button>
+          <button class="term-btn" data-cmd="stack">stack</button>
+          <button class="term-btn" data-cmd="clear">clear</button>
+        </div>
+
+        <form class="terminal-input-bar" id="terminal-form">
+          <span class="prompt">jack@star:~$</span>
+          <input type="text" id="terminal-input" autocomplete="off" spellcheck="false" placeholder="Escribe 'help' o un comando y presiona Enter..." aria-label="Entrada de comandos de consola">
+          <button type="submit" class="term-send-btn" aria-label="Ejecutar comando">Ejecutar</button>
+        </form>
       </div>
     </section>
 
+    <!-- Stack Tecnológico Matrix -->
     <section class="section stack-section" id="stack">
-      <div class="section-heading reveal">
-        <span>04 / Stack</span>
-        <h2>Herramientas al servicio del sistema.</h2>
+      <div class="section-heading">
+        <span class="section-tag">04 / STACK TECNOLÓGICO</span>
+        <h2>Herramientas al servicio de la resiliencia.</h2>
+        <p>No elijo tecnologías por tendencia, sino por capacidad de aislamiento, rendimiento medible y mantenibilidad a largo plazo.</p>
       </div>
-      <div class="stack-list reveal" id="stack-list"></div>
+
+      <div class="stack-grid">
+        <div class="stack-category-card" data-tilt>
+          <div class="category-header">
+            <span class="cat-icon">⚡</span>
+            <h3>Lenguajes & Runtimes</h3>
+          </div>
+          <div class="tech-pills">
+            <div class="tech-pill"><span class="tech-dot java"></span><strong>Java 21 LTS</strong><small>Paper, Purpur, Engines</small></div>
+            <div class="tech-pill"><span class="tech-dot python"></span><strong>Python 3.12</strong><small>FastAPI, SRE, PySide6</small></div>
+            <div class="tech-pill"><span class="tech-dot ts"></span><strong>TypeScript / JS</strong><small>Node.js, Three.js, PWA</small></div>
+            <div class="tech-pill"><span class="tech-dot rust"></span><strong>Rust</strong><small>Microservicios de alto rendimiento</small></div>
+            <div class="tech-pill"><span class="tech-dot php"></span><strong>PHP</strong><small>Sistemas heredados y portales</small></div>
+            <div class="tech-pill"><span class="tech-dot shell"></span><strong>Bash & PowerShell</strong><small>Automatización & LabOps</small></div>
+          </div>
+        </div>
+
+        <div class="stack-category-card" data-tilt>
+          <div class="category-header">
+            <span class="cat-icon">🛡️</span>
+            <h3>Infraestructura & SRE</h3>
+          </div>
+          <div class="tech-pills">
+            <div class="tech-pill"><span class="tech-dot linux"></span><strong>Linux (Ubuntu/Debian)</strong><small>Bare-Metal & Servidores</small></div>
+            <div class="tech-pill"><span class="tech-dot docker"></span><strong>Docker & Compose</strong><small>Aislamiento de servicios</small></div>
+            <div class="tech-pill"><span class="tech-dot lvm"></span><strong>LVM Storage</strong><small>Gestión de discos y pools</small></div>
+            <div class="tech-pill"><span class="tech-dot cloudflare"></span><strong>Cloudflare Tunnels</strong><small>Zero Trust & Edge DNS</small></div>
+            <div class="tech-pill"><span class="tech-dot tailscale"></span><strong>Tailscale Mesh</strong><small>Red privada WireGuard</small></div>
+            <div class="tech-pill"><span class="tech-dot systemd"></span><strong>Systemd Timers</strong><small>Automatización de tareas</small></div>
+          </div>
+        </div>
+
+        <div class="stack-category-card" data-tilt>
+          <div class="category-header">
+            <span class="cat-icon">💾</span>
+            <h3>Bases de Datos & Almacenamiento</h3>
+          </div>
+          <div class="tech-pills">
+            <div class="tech-pill"><span class="tech-dot sqlite"></span><strong>SQLite WAL</strong><small>Concurrencia local ultrarrápida</small></div>
+            <div class="tech-pill"><span class="tech-dot postgres"></span><strong>PostgreSQL</strong><small>Transacciones relacionales</small></div>
+            <div class="tech-pill"><span class="tech-dot redis"></span><strong>Redis</strong><small>Caché y mensajería pub/sub</small></div>
+            <div class="tech-pill"><span class="tech-dot gdrive"></span><strong>Google Drive API</strong><small>Almacenamiento masivo DR</small></div>
+            <div class="tech-pill"><span class="tech-dot git"></span><strong>Git / GitHub</strong><small>Control de versiones estricto</small></div>
+            <div class="tech-pill"><span class="tech-dot data"></span><strong>Paper Data Components</strong><small>Serialización segura Minecraft</small></div>
+          </div>
+        </div>
+
+        <div class="stack-category-card" data-tilt>
+          <div class="category-header">
+            <span class="cat-icon">🤖</span>
+            <h3>IA Autónoma & Automatización</h3>
+          </div>
+          <div class="tech-pills">
+            <div class="tech-pill"><span class="tech-dot agy"></span><strong>Google Antigravity</strong><small>Gemini 3.8 Flash High</small></div>
+            <div class="tech-pill"><span class="tech-dot claude"></span><strong>Claude Code</strong><small>Arquitectura & Razonamiento</small></div>
+            <div class="tech-pill"><span class="tech-dot codex"></span><strong>OpenAI Codex</strong><small>Integración & QA</small></div>
+            <div class="tech-pill"><span class="tech-dot mineflayer"></span><strong>Mineflayer</strong><small>Presencia in-game bot</small></div>
+            <div class="tech-pill"><span class="tech-dot eleven"></span><strong>ElevenLabs & Whisper</strong><small>Síntesis y transcripción de voz</small></div>
+            <div class="tech-pill"><span class="tech-dot discord"></span><strong>Discord.js & Webhooks</strong><small>Alertas y telemetría en vivo</small></div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section class="section process-section" id="metodo">
-      <div class="section-heading reveal">
-        <span>05 / Método</span>
-        <h2>Construir también es dejar continuidad.</h2>
+    <!-- Doctrina de Resiliencia / Método -->
+    <section class="section philosophy-section" id="filosofia">
+      <div class="section-heading">
+        <span class="section-tag">05 / DOCTRINA DE INGENIERÍA</span>
+        <h2>La estabilidad no es suerte. Es método.</h2>
+        <p>Todo cambio en un sistema en producción debe estar respaldado por evidencia observable, reproducibilidad estricta y una ruta de reversión inmediata.</p>
       </div>
-      <div class="process-track reveal">
-        <article><b>1</b><h3>Entender</h3><p>Separar el problema real del ruido y hacer visibles las restricciones.</p></article>
-        <article><b>2</b><h3>Construir</h3><p>Implementar con interfaces claras, validaciones y cambios pequeños.</p></article>
-        <article><b>3</b><h3>Operar</h3><p>Desplegar con logs, salud del servicio y una ruta de recuperación.</p></article>
-        <article><b>4</b><h3>Documentar</h3><p>Dejar decisiones y procedimientos donde el equipo pueda encontrarlos.</p></article>
-        <article><b>5</b><h3>Mejorar</h3><p>Reducir deuda técnica sin convertir cada problema en una nueva plataforma.</p></article>
+
+      <div class="doctrine-track">
+        <div class="track-step">
+          <span class="step-num">01</span>
+          <h4>Observe</h4>
+          <p>Consultar telemetría, métricas y registros de error crudos antes de generar hipótesis especulativas.</p>
+        </div>
+        <div class="track-arrow">→</div>
+        <div class="track-step">
+          <span class="step-num">02</span>
+          <h4>Correlate</h4>
+          <p>Cruzar eventos entre capas (red, kernel, JVM, bases de datos y usuarios) para aislar la causa raíz real.</p>
+        </div>
+        <div class="track-arrow">→</div>
+        <div class="track-step">
+          <span class="step-num">03</span>
+          <h4>Reproduce</h4>
+          <p>Replicar la falla en entornos seguros sin poner en riesgo los datos de producción de los usuarios.</p>
+        </div>
+        <div class="track-arrow">→</div>
+        <div class="track-step">
+          <span class="step-num">04</span>
+          <h4>Protect Data</h4>
+          <p>Asegurar copias de seguridad de esquemas y tablas antes de ejecutar cualquier script o migración.</p>
+        </div>
+        <div class="track-arrow">→</div>
+        <div class="track-step">
+          <span class="step-num">05</span>
+          <h4>Patch & Verify</h4>
+          <p>Implementar modificaciones pequeñas, atómicas y trazables, verificando que no introduzcan efectos secundarios.</p>
+        </div>
+        <div class="track-arrow">→</div>
+        <div class="track-step">
+          <span class="step-num">06</span>
+          <h4>Deploy & Watch</h4>
+          <p>Publicar con procedimiento de rollback inmediato y monitorear la salud del servicio en tiempo real.</p>
+        </div>
       </div>
     </section>
 
+    <!-- Sección de Contacto & Comunidad -->
     <section class="section contact-section" id="contacto">
-      <div class="contact-copy reveal">
-        <span class="eyebrow"><span></span> Contacto</span>
-        <h2>¿Tienes un sistema que construir o mantener?</h2>
-        <p>Cuéntame el contexto, el problema y qué debe seguir funcionando. Responderé con una ruta técnica concreta.</p>
-        <div class="contact-links">
-          <a href="mailto:pablo.elias.miranda.292003@gmail.com">pablo.elias.miranda.292003@gmail.com</a>
-          <a href="https://github.com/JackStar6677-1" target="_blank" rel="noopener">github.com/JackStar6677-1</a>
-          <a href="https://github.com/DrakesCraft-Labs" target="_blank" rel="noopener">github.com/DrakesCraft-Labs</a>
+      <div class="contact-layout">
+        <div class="contact-info">
+          <span class="section-tag">06 / CONTACTO & CONEXIÓN</span>
+          <h2>Construyamos algo que perdure.</h2>
+          <p class="contact-lead">
+            ¿Tienes un desafío de infraestructura, una plataforma que necesita estabilidad, un proyecto en Java de alto rendimiento o una automatización institucional? Conversemos.
+          </p>
+
+          <!-- Tarjeta Destacada de Discord -->
+          <div class="discord-card-featured" data-tilt>
+            <div class="dc-header">
+              <div class="dc-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true">
+                  <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+                </svg>
+              </div>
+              <div class="dc-title">
+                <h4>Servidor Oficial de Discord</h4>
+                <span>Comunidad activa de DrakesCraft y soporte directo</span>
+              </div>
+            </div>
+            <p>Únete para conversar con Jack, ver avances de desarrollo en vivo y formar parte de la comunidad técnica.</p>
+            <a href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener noreferrer" class="btn btn-discord btn-full">
+              <span>Unirse a discord.gg/rv3vtXZTk7</span>
+              <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            </a>
+          </div>
+
+          <!-- Canales de contacto directos -->
+          <div class="direct-channels">
+            <div class="channel-item">
+              <span class="channel-label">Correo Electrónico Oficial</span>
+              <div class="copy-email-group">
+                <span class="email-address mono" id="email-text">pablo.elias.miranda.292003@gmail.com</span>
+                <button class="btn btn-copy" id="btn-copy-email" aria-label="Copiar correo al portapapeles">
+                  <span id="copy-text">Copiar</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="channel-item">
+              <span class="channel-label">Repositorios & Código Abierto</span>
+              <div class="links-row">
+                <a href="https://github.com/JackStar6677-1" target="_blank" rel="noopener noreferrer" class="tag-link">github.com/JackStar6677-1</a>
+                <a href="https://github.com/DrakesCraft-Labs" target="_blank" rel="noopener noreferrer" class="tag-link">github.com/DrakesCraft-Labs</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulario de Contacto -->
+        <div class="contact-form-wrapper" data-tilt>
+          <form class="contact-form" id="contact-form" novalidate>
+            <div class="form-header">
+              <h3>Enviar Mensaje Directo</h3>
+              <p>Completa el formulario y te responderé con una ruta técnica concreta.</p>
+            </div>
+
+            <!-- Honeypot antispam invisible -->
+            <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="honeypot">
+
+            <div class="form-group">
+              <label for="form-name">Nombre o Alias <span class="req">*</span></label>
+              <input type="text" id="form-name" name="name" maxlength="80" required autocomplete="name" placeholder="Tu nombre o empresa">
+            </div>
+
+            <div class="form-group">
+              <label for="form-email">Correo Electrónico <span class="req">*</span></label>
+              <input type="email" id="form-email" name="email" maxlength="120" required autocomplete="email" placeholder="tu@correo.com">
+            </div>
+
+            <div class="form-group">
+              <label for="form-service">Área del Proyecto <span class="req">*</span></label>
+              <select id="form-service" name="service" required>
+                <option value="">Selecciona un área</option>
+                <option value="Infraestructura y Servidores Linux">Infraestructura & Servidores Linux / SRE</option>
+                <option value="Desarrollo Minecraft Técnico / Java 21">Minecraft Técnico / Java 21 / Plugins</option>
+                <option value="Inteligencia Artificial y Automatización">Inteligencia Artificial & Automatización (SAORI)</option>
+                <option value="Tecnología Educativa y Sistemas Escolares">Tecnología Educativa & Sistemas Institucionales</option>
+                <option value="Desarrollo Full-Stack / Plataformas Web">Desarrollo Full-Stack / Plataformas Web</option>
+                <option value="Consulta General">Consulta General</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="form-message">Descripción del Desafío o Contexto <span class="req">*</span></label>
+              <textarea id="form-message" name="message" rows="5" maxlength="1200" required placeholder="Describe el problema, qué infraestructura involucra y qué objetivo necesitas alcanzar..."></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group half">
+                <label for="form-budget">Presupuesto Estimado <small>(opcional)</small></label>
+                <input type="text" id="form-budget" name="budget" maxlength="80" placeholder="Ej: $500 USD / A convenir">
+              </div>
+              <div class="form-group half">
+                <label for="form-urgency">Urgencia <small>(opcional)</small></label>
+                <input type="text" id="form-urgency" name="urgency" maxlength="80" placeholder="Ej: Esta semana / Próximo mes">
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full" id="form-submit-btn">
+              <span>Preparar & Enviar Solicitud</span>
+              <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            </button>
+
+            <p class="form-status-msg" id="form-status" aria-live="polite">
+              Tus datos se procesan de forma privada. Nunca compartas contraseñas ni claves de acceso.
+            </p>
+          </form>
         </div>
       </div>
-      <form class="contact-form reveal" id="contact-form" novalidate>
-        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="honeypot">
-        <label>Nombre <input name="name" maxlength="80" required autocomplete="name"></label>
-        <label>Email <input name="email" type="email" maxlength="120" required autocomplete="email"></label>
-        <label>Tipo de servicio
-          <select name="service" required>
-            <option value="">Selecciona una opción</option>
-          <option>Software y sistemas internos</option><option>Infraestructura y despliegues</option>
-          <option>Automatización y observabilidad</option><option>DrakesCraft / Minecraft técnico</option>
-          </select>
-        </label>
-        <label>Mensaje <textarea name="message" maxlength="1200" required></textarea></label>
-        <div class="form-row">
-          <label>Presupuesto opcional <input name="budget" maxlength="80"></label>
-          <label>Urgencia opcional <input name="urgency" maxlength="80"></label>
-        </div>
-        <button class="button primary" type="submit">Preparar contacto</button>
-        <p class="form-status" id="form-status" aria-live="polite">No ingreses contraseñas ni información sensible.</p>
-      </form>
     </section>
   </main>
 
-  <footer>
-    <div>
-      <strong>Jack / JackStar</strong>
-      <span>Software, infraestructura y operación de sistemas reales.</span>
-    </div>
-    <div>
-      <span id="year"></span>
-      <a href="#inicio">Volver arriba</a>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-logo">JACK / JACKSTAR</span>
+        <p>Sistemas, infraestructura resiliente y operación de software en producción.</p>
+        <span class="footer-meta">Alojado físicamente en el clúster Star · Santiago, Chile</span>
+      </div>
+
+      <div class="footer-links">
+        <a href="https://discord.gg/rv3vtXZTk7" target="_blank" rel="noopener noreferrer">Discord Oficial</a>
+        <a href="https://github.com/JackStar6677-1" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://github.com/DrakesCraft-Labs" target="_blank" rel="noopener noreferrer">DrakesCraft Labs</a>
+        <a href="https://web.drakescraft.cl" target="_blank" rel="noopener noreferrer">DrakesCraft Web</a>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="current-year">2026</span> JackStar. Ambitious is good. Recoverable is better.</span>
+        <a href="#inicio" class="back-to-top">Volver arriba ↑</a>
+      </div>
     </div>
   </footer>
 
-  <script src="/script.js?v=4"></script>
+  <!-- Three.js vía CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="/script.js?v=20260904"></script>
 </body>
 </html>
