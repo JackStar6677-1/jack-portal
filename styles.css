@@ -881,30 +881,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   font-size: 0.9rem;
   line-height: 1.6;
 }
-.mission-section {
-  display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
-  gap: 3rem;
-  align-items: center;
-}
-.mission-photo-wrap {
-  overflow: hidden;
-  border: 1px solid rgba(34, 211, 238, 0.32);
-  border-radius: var(--radius-lg);
-  background: var(--bg-card);
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
-}
-.mission-photo-wrap img {
-  width: 100%;
-  display: block;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-}
-.mission-copy h2 { margin: 0.85rem 0 1rem; }
-.mission-copy > p { line-height: 1.7; color: var(--text-muted); }
-.mission-list { list-style: none; margin-top: 1.25rem; display: grid; gap: 0.7rem; }
-.mission-list li { color: var(--text-muted); padding-left: 1.35rem; position: relative; }
-.mission-list li::before { content: "▹"; color: var(--cyan); position: absolute; left: 0; }
 .project-filters {
   display: flex;
   flex-wrap: wrap;
@@ -1604,8 +1580,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .experience-grid,
-  .mission-section {
+  .experience-grid {
     grid-template-columns: 1fr;
   }
 }
