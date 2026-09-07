@@ -1,27 +1,29 @@
-# Jack Portal · Portafolio Profesional de Alto Impacto
+# Jack Portal · Portafolio técnico público
 
-Portafolio técnico público de **Jack / JackStar** (`https://jack.drakescraft.cl`).
+Portafolio técnico público seudónimo de **JackStar** (`https://jack.drakescraft.cl`).
 
 ## Objetivo
 
-Exhibir la ingeniería de sistemas, arquitectura de software, clúster físico bare-metal (Star), desarrollo de alta concurrencia en Java 21 (DrakesCraft), enjambre de IA multiagente (SAORI) y plataformas de tecnología institucional/educativa.
+Presentar experiencia en ingeniería de sistemas, software Java, infraestructura Linux, automatización y tecnología aplicada sin revelar identidad legal, ubicación, datos de empleadores ni detalles operacionales.
+
+La interfaz de telemetría es una **demostración representativa y sanitizada**: no consulta sistemas internos y no debe contener hosts, direcciones, credenciales, registros ni métricas de producción.
 
 ## Stack
 
 - **Servidor Backend**: Python 3.12 (librería estándar, sin dependencias externas pesadas).
 - **Frontend**: HTML5 semántico, CSS3 moderno con glassmorphism cyberpunk y JavaScript nativo.
 - **3D & Interactividad**: Three.js (constelación de partículas y esfera orbital reactiva al cursor).
-- **Terminal CLI**: Emulador interactivo con telemetría en tiempo real del clúster Star.
+- **Terminal CLI**: Emulador interactivo de arquitectura de referencia, sin acceso a producción.
 - **Despliegue**: Docker en `127.0.0.1:8082`, servido a través de Cloudflare Tunnel hacia `jack.drakescraft.cl`.
 
 ## Endpoints
 
 - `GET /healthz`: Healthcheck estándar para Docker.
 - `GET /api/health`: Estado del servicio y tiempo de actividad (uptime).
-- `GET /api/profile`: Metadatos profesionales, enlaces de Discord, GitHub y estadísticas.
-- `GET /api/services`: Cuatro pilares de servicios (SRE, Minecraft Java 21, IA Soberana, Campus IT).
+- `GET /api/profile`: Metadatos seudónimos, enlaces públicos y estadísticas generales.
+- `GET /api/services`: Áreas de servicio: infraestructura, Java/Minecraft, automatización y tecnología aplicada.
 - `GET /api/projects`: Catálogo enriquecido de proyectos con filtros de categoría.
-- `GET /api/telemetry`: Telemetría viva del clúster Star, SAORI Swarm y DrakesCraft.
+- `GET /api/telemetry`: Arquitectura de referencia sanitizada; no incluye telemetría viva.
 - `POST /api/contact`: Validación, honeypot antispam, rate limiting y encolado durable de solicitudes.
 
 ## Arquitectura de Despliegue
@@ -53,3 +55,12 @@ Navegador -> POST /api/contact -> cola privada /opt/stacks/state/jack-portal-con
 - Los archivos de `deploy/` instalan un `systemd.path` (entrega inmediata) y un
   `systemd.timer` (reintento periódico). Revisa el resultado con
   `systemctl --user status jack-portal-contact-relay.path`.
+
+## Privacidad antes de publicar
+
+- No subas CVs sin sanitizar, fotografías con pantallas legibles, correos, teléfonos,
+  ubicaciones, instituciones, direcciones, nombres de hosts, IPs o registros.
+- Toda imagen de entorno de trabajo debe eliminar marcas de dispositivo, fecha/hora y
+  contenido legible de pantallas antes de entrar en `assets/`.
+- Antes de un `git push`, ejecuta una búsqueda de datos personales y revisa
+  `git diff --check`. Nunca uses `git add -A` para publicar este portal.

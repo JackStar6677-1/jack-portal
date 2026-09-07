@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Inicializaciones
   initScrollProgress();
   initMobileNav();
-  initCopyEmail();
   initTiltCards();
   initTerminalCLI();
   initProjectFiltering();
@@ -45,47 +44,8 @@ function initMobileNav() {
   });
 }
 
-/* ==========================================================================
-   2. Copy Email to Clipboard
-   ========================================================================== */
-function initCopyEmail() {
-  const copyBtn = document.getElementById('btn-copy-email');
-  const emailTextElem = document.getElementById('email-text');
-  const copyTextElem = document.getElementById('copy-text');
-  if (!copyBtn || !emailTextElem) return;
-
-  const emailToCopy = emailTextElem.textContent.trim();
-
-  copyBtn.addEventListener('click', async () => {
-    try {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        await navigator.clipboard.writeText(emailToCopy);
-      } else {
-        const textarea = document.createElement('textarea');
-        textarea.value = emailToCopy;
-        textarea.style.position = 'fixed';
-        textarea.style.opacity = '0';
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textarea);
-      }
-
-      copyBtn.classList.add('copied');
-      if (copyTextElem) copyTextElem.textContent = '¡Copiado!';
-
-      setTimeout(() => {
-        copyBtn.classList.remove('copied');
-        if (copyTextElem) copyTextElem.textContent = 'Copiar';
-      }, 2500);
-    } catch (_err) {
-      if (copyTextElem) copyTextElem.textContent = 'Error al copiar';
-    }
-  });
-}
-
-/* ==========================================================================
-   3. 3D Tilt Effect on Cards
+/* ===========================================================================
+   2. 3D Tilt Effect on Cards
    ========================================================================== */
 function initTiltCards() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -194,78 +154,18 @@ function initTerminalCLI() {
   const shortcutBtns = document.querySelectorAll('.term-btn');
   if (!form || !input || !body) return;
 
+  // Esta consola es deliberadamente estática: sirve para explicar la arquitectura
+  // sin convertir el portafolio público en una ventana a sistemas internos.
   const COMMANDS = {
-    help: () => [
-      'Comandos disponibles:',
-      '  status       - Muestra telemetría en vivo del clúster físico Star',
-      '  saori        - Consulta el estado del enjambre multiagente de IA',
-      '  drakescraft  - Métricas de la red de Minecraft y plugins en Java 21',
-      '  education    - Sistemas y laboratorios de tecnología educativa',
-      '  backups      - Estado de los pipelines híbridos (GitHub + Drive)',
-      '  stack        - Resumen de arquitectura y herramientas clave',
-      '  whoami       - Identidad y rol técnico de Jack / JackStar',
-      '  contact      - Información de contacto y enlaces oficiales',
-      '  clear        - Limpia la pantalla de la consola'
-    ],
-    status: () => [
-      '[+] CLÚSTER STAR · TELEMETRÍA GLOBAL',
-      '  Nodo Maestro: Star (Santiago, CL) · OS: Ubuntu 24.04 LTS x86_64',
-      '  Almacenamiento: LVM Volume Group (NVMe + HDD Array) · Salud: OK (100% libre asignado)',
-      '  Red Privada: Tailscale Mesh (WireGuard Cifrado) · Túneles: Cloudflare Edge (Zero Exposed Ports)',
-      '  Carga de CPU: 0.85, 0.92, 0.78 (Estable) · RAM: 32 GB DDR4 ECC (Asignada)',
-      '  Contenedores Docker: jack-portal (8082), saori-stack, star-monitor, cempudla'
-    ],
-    saori: () => [
-      '[+] SAORI SRE CORE · TRI-AGENT SWARM OPERATIONAL',
-      '  Agente Principal Dev: Google Antigravity (Gemini 3.8 Flash High · Esfuerzo Alto)',
-      '  Arquitecto Técnico:   Claude Code (Razonamiento y orquestación)',
-      '  Integrador & QA:     OpenAI Codex (GPT-5.6 Luna · Verificación y tests)',
-      '  Control de Estado:   SQLite WAL Mutex Leasing (observe, develop, admin)',
-      '  Presencia Omnicanal: Minecraft Avatar Bot (Mineflayer), Discord Bot, WhatsApp Voice (ElevenLabs)'
-    ],
-    drakescraft: () => [
-      '[+] DRAKESCRAFT NETWORK (Purpur 1.21.11 / Java 21 LTS)',
-      '  Modalidades: Survival, OneBlock, SkyBlock, Classic Vanilla, Laboratory',
-      '  Addons & Plugins: +100 plugins mantenidos y optimizados',
-      '  Odysseia Engine: Pasarela de transacciones Tebex con verificación idempotente',
-      '  BentoBox-Drake & InvSwitcher-Drake: Deserialización Data Components zero-loss',
-      '  Ecosistema Slimefun: +15 addons compilados y modernizados a Java 21',
-      '  Comunidad Oficial: https://discord.gg/rv3vtXZTk7'
-    ],
-    education: () => [
-      '[+] CAMPUS IT & TECNOLOGÍA EDUCATIVA (Colegio Castelgandolfo & Centros)',
-      '  Castel LabOps (VeyonScripts): Diagnóstico y administración de aulas, Wake-on-LAN, WinRM',
-      '  CampusCare Monitoring: PWA con mapeo físico y telemetría de equipos de laboratorio',
-      '  CastelRoomKeeper: Calendario y gestión de salas sin contraseñas maestras compartidas',
-      '  CastelCredCam: Software de fotografía masiva escolar en PySide6/Qt con reencuadre facial',
-      '  CEMPUDLA: Plataforma multicentro con Google OAuth federado y autenticación por RUT'
-    ],
-    backups: () => [
-      '[+] PIPELINE DE RESPALDO RESILIENTE (Multi-Tier Disaster Recovery)',
-      '  Tier 1 (Nocturno): Respaldo incremental automático sincronizado a repositorios Git seguros',
-      '  Tier 2 (Semanal Masivo): Archivo completo de mundos, configs y bases de datos a Google Drive',
-      '  Notificaciones: Webhooks a Discord con reporte de integridad SHA256 y tamaño',
-      '  Filosofía: "Ambitious is good. Recoverable is better."'
-    ],
-    stack: () => [
-      '[+] STACK TECNOLÓGICO CLAVE',
-      '  Lenguajes: Java 21 LTS, Python 3.12, TypeScript, JavaScript, Rust, PHP, Bash, PowerShell',
-      '  SRE & DevOps: Linux Ubuntu, Docker Compose, LVM RAID, Tailscale Mesh, Cloudflare Tunnels',
-      '  Bases de Datos: SQLite WAL, PostgreSQL, Redis, Paper Data Components',
-      '  IA & Automatización: Antigravity Gemini 3.8 High, Claude Code, Codex, Mineflayer, ElevenLabs'
-    ],
-    whoami: () => [
-      'Jack / JackStar',
-      'Systems Engineer · Infrastructure Operator · Full-Stack Builder & Sovereign AI Creator',
-      'Especialista en resiliencia de producción, Java 21 de alta concurrencia y homelab SRE.'
-    ],
-    contact: () => [
-      '[+] CANALES DE CONTACTO OFICIALES',
-      '  Discord Oficial: https://discord.gg/rv3vtXZTk7',
-      '  GitHub:          https://github.com/JackStar6677-1',
-      '  DrakesCraft:     https://web.drakescraft.cl',
-      '  Correo:          pablo.elias.miranda.292003@gmail.com'
-    ]
+    help: () => ['Comandos disponibles:', '  status       - Resumen representativo de infraestructura', '  saori        - Patrón de orquestación multiagente', '  drakescraft  - Alcance técnico del ecosistema Java', '  education    - Experiencia en soporte TI y plataformas', '  backups      - Principios de continuidad operativa', '  stack        - Herramientas habituales', '  whoami       - Perfil profesional seudónimo', '  contact      - Canales públicos', '  clear        - Limpia la consola'],
+    status: () => ['[REF] INFRAESTRUCTURA · DEMOSTRACIÓN SANITIZADA', '  Runtime: Linux y servicios contenerizados', '  Datos: respaldos verificables y restauración documentada', '  Red: acceso privado y publicación web controlada', '  Métricas reales, direcciones y nombres de nodos no se exponen aquí.'],
+    saori: () => ['[REF] SAORI · ORQUESTACIÓN MULTIAGENTE', '  Coordinación por bloqueos y estados auditables', '  Los agentes apoyan observación, desarrollo y QA', '  Las acciones con impacto requieren reglas y supervisión humana.'],
+    drakescraft: () => ['[REF] MINECRAFT ENGINEERING', '  Plugins Java, soporte híbrido y addons de Slimefun', '  Prioridad: integridad de inventarios, economía y datos de jugadores', '  Integraciones de tienda con evidencia y reintentos controlados.'],
+    education: () => ['[REF] TECNOLOGÍA APLICADA', '  Soporte TI, recuperación de estaciones y periféricos', '  Gestión de laboratorios, reservas, accesos y documentación', '  Los nombres de instituciones y sistemas privados no se publican.'],
+    backups: () => ['[REF] CONTINUIDAD OPERATIVA', '  Respaldar antes de cambios de datos o almacenamiento', '  Verificar restauración, retención y trazabilidad', '  Mantener una ruta de reversión cerca del despliegue.'],
+    stack: () => ['[REF] STACK HABITUAL', '  Java · Python · JavaScript · Bash · PowerShell', '  Linux · Docker · PostgreSQL · Redis · SQLite · Git', '  Paper/Purpur · APIs · observabilidad · automatización'],
+    whoami: () => ['JackStar', 'Systems Engineer · Software & Infrastructure', 'Perfil público seudónimo. Referencias e identidad legal se comparten solo en conversaciones formales.'],
+    contact: () => ['[+] CANALES PÚBLICOS', '  Formulario privado: disponible en esta página', '  GitHub: https://github.com/JackStar6677-1', '  Comunidad: https://discord.gg/rv3vtXZTk7', '  No se publica correo, ubicación ni credenciales.']
   };
 
   function executeCommand(cmdRaw) {
@@ -275,7 +175,7 @@ function initTerminalCLI() {
     // Agregar echo del comando
     const echoDiv = document.createElement('div');
     echoDiv.className = 'term-line command-echo';
-    echoDiv.innerHTML = `<span class="prompt">jack@star:~$</span> <span class="cmd-text">${escapeHtml(cmdRaw)}</span>`;
+    echoDiv.innerHTML = `<span class="prompt">portfolio@reference:~$</span> <span class="cmd-text">${escapeHtml(cmdRaw)}</span>`;
     body.appendChild(echoDiv);
 
     if (cmd === 'clear') {
@@ -365,7 +265,7 @@ function initContactForm() {
       form.reset();
     } catch (_err) {
       statusElem.className = 'form-status-msg error';
-      statusElem.textContent = 'No se pudo conectar al servidor. Puedes escribir directamente a pablo.elias.miranda.292003@gmail.com';
+      statusElem.textContent = 'No se pudo conectar al sistema de entrega. Tu mensaje no fue guardado; intenta nuevamente más tarde.';
     } finally {
       if (submitBtn) submitBtn.disabled = false;
     }

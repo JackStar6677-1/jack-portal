@@ -843,6 +843,68 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 /* Projects Section */
+.services-grid,
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+.service-card,
+.experience-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.6rem;
+  backdrop-filter: blur(14px);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.service-card:hover,
+.experience-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(34, 211, 238, 0.4);
+}
+.service-card > span {
+  display: block;
+  color: var(--cyan);
+  font: 700 0.75rem var(--font-mono);
+  margin-bottom: 1rem;
+}
+.service-card h3,
+.experience-card h3 {
+  font-size: 1.08rem;
+  margin-bottom: 0.65rem;
+}
+.service-card p,
+.experience-card p,
+.privacy-note {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.mission-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+  gap: 3rem;
+  align-items: center;
+}
+.mission-photo-wrap {
+  overflow: hidden;
+  border: 1px solid rgba(34, 211, 238, 0.32);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+}
+.mission-photo-wrap img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+.mission-copy h2 { margin: 0.85rem 0 1rem; }
+.mission-copy > p { line-height: 1.7; color: var(--text-muted); }
+.mission-list { list-style: none; margin-top: 1.25rem; display: grid; gap: 0.7rem; }
+.mission-list li { color: var(--text-muted); padding-left: 1.35rem; position: relative; }
+.mission-list li::before { content: "▹"; color: var(--cyan); position: absolute; left: 0; }
 .project-filters {
   display: flex;
   flex-wrap: wrap;
@@ -1208,7 +1270,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 /* Philosophy Doctrine Track */
 .doctrine-track {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   gap: 1rem;
   align-items: center;
 }
@@ -1539,6 +1601,13 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     grid-template-columns: 1fr;
     gap: 3rem;
   }
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .experience-grid,
+  .mission-section {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1588,6 +1657,10 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     grid-template-columns: 1fr;
   }
   .projects-grid {
+    grid-template-columns: 1fr;
+  }
+  .services-grid,
+  .experience-grid {
     grid-template-columns: 1fr;
   }
   .form-row {
