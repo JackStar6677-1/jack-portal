@@ -1,0 +1,11 @@
+[Unit]
+Description=Retry pending Jack Portal contact delivery
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=5min
+Persistent=true
+Unit=jack-portal-contact-relay.service
+
+[Install]
+WantedBy=timers.target

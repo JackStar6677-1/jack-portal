@@ -1,0 +1,9 @@
+[Unit]
+Description=Watch the private Jack Portal contact queue
+
+[Path]
+PathExistsGlob=/opt/stacks/state/jack-portal-contact/pending/*.pending.json
+Unit=jack-portal-contact-relay.service
+
+[Install]
+WantedBy=default.target

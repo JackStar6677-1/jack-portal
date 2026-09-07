@@ -324,7 +324,7 @@ function initContactForm() {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     statusElem.className = 'form-status-msg';
-    statusElem.textContent = 'Validando y preparando solicitud...';
+    statusElem.textContent = 'Validando y guardando solicitud...';
 
     const formData = new FormData(form);
     const payload = Object.fromEntries(formData.entries());
@@ -361,22 +361,7 @@ function initContactForm() {
       }
 
       statusElem.className = 'form-status-msg success';
-      statusElem.textContent = '¡Solicitud aceptada! Abriendo tu cliente de correo preparado...';
-
-      // Abrir plantilla de correo pre-rellenada
-      const subject = encodeURIComponent(`[Contacto JackStar] ${payload.service} - ${payload.name}`);
-      const bodyText = [
-        `Nombre: ${payload.name}`,
-        `Email de contacto: ${payload.email}`,
-        `Área de Servicio: ${payload.service}`,
-        `Presupuesto: ${payload.budget || 'A convenir'}`,
-        `Urgencia: ${payload.urgency || 'Estándar'}`,
-        '----------------------------------------',
-        'Mensaje:',
-        payload.message
-      ].join('\n');
-
-      window.location.href = `mailto:pablo.elias.miranda.292003@gmail.com?subject=${subject}&body=${encodeURIComponent(bodyText)}`;
+      statusElem.textContent = '¡Solicitud recibida! Quedó guardada para entrega al equipo.';
       form.reset();
     } catch (_err) {
       statusElem.className = 'form-status-msg error';

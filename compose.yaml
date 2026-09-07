@@ -7,3 +7,8 @@ services:
     restart: unless-stopped
     ports:
       - "127.0.0.1:8082:8080"
+    # This bind mount is a private, durable handoff to the host-only relay.
+    # SMTP credentials remain outside the container and outside this repository.
+    volumes:
+      - /opt/stacks/state/jack-portal-contact:/app/contact-queue
+    user: "1000:1000"

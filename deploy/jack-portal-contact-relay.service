@@ -1,0 +1,9 @@
+[Unit]
+Description=Deliver queued Jack Portal contacts through SAORI mail
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/stacks/repos/jack-portal
+ExecStart=/usr/bin/python3 /opt/stacks/repos/jack-portal/contact_relay.py --once

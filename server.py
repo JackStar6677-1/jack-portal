@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import time
+import uuid
 from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -12,6 +14,10 @@ APP = "jack-portal"
 ENVIRONMENT = "production"
 PUBLIC_EMAIL = "pablo.elias.miranda.292003@gmail.com"
 ROOT = Path(__file__).resolve().parent
+# The web container has no SMTP credentials. It can only create a durable,
+# private envelope here; the host-side relay is the only process allowed to
+# consume it and use SAORI's existing mail configuration.
+CONTACT_QUEUE_DIR = Path(os.environ.get("CONTACT_QUEUE_DIR", "/app/contact-queue"))
 MAX_BODY_BYTES = 8_192
 RATE_LIMIT_WINDOW = 60 * 60
 RATE_LIMIT_MAX = 5
@@ -317,10 +323,20 @@ class Handler(SimpleHTTPRequestHandler):
             self.send_json({"error": error}, HTTPStatus.BAD_REQUEST)
             return
 
+        try:
+            contact_id = persist_contact(payload)
+        except OSError:
+            # Do not claim success when the durable queue is unavailable.
+            self.send_json({
+                "error": "El sistema de entrega no está disponible. Tu solicitud no fue guardada; intenta nuevamente más tarde.",
+            }, HTTPStatus.SERVICE_UNAVAILABLE)
+            return
+
         self.send_json({
-            "status": "accepted",
-            "delivery": "mailto",
-            "message": "Solicitud validada exitosamente. Se preparó la plantilla de contacto.",
+            "status": "queued",
+            "delivery": "durable-queue",
+            "id": contact_id,
+            "message": "Tu solicitud fue guardada y será entregada al equipo.",
         }, HTTPStatus.ACCEPTED)
 
     def rate_limit_ok(self) -> bool:
@@ -370,6 +386,46 @@ def validate_contact(payload: dict[str, Any]) -> str | None:
             return "Uno de los campos opcionales supera el largo permitido."
 
     return None
+
+
+def persist_contact(payload: dict[str, Any]) -> str:
+    """Atomically enqueue a validated request for the host-only mail relay.
+
+    An HTTP 202 is returned only after ``os.replace`` has made the envelope
+    visible as ``*.pending.json``. A crash can therefore leave a request queued
+    for retry, but never report a contact as delivered without storing it.
+    """
+    contact_id = uuid.uuid4().hex
+    envelope = {
+        "schema": 1,
+        "id": contact_id,
+        "created_at": int(time.time()),
+        "name": str(payload["name"]).strip(),
+        "email": str(payload["email"]).strip(),
+        "service": str(payload["service"]).strip(),
+        "budget": str(payload.get("budget", "")).strip(),
+        "urgency": str(payload.get("urgency", "")).strip(),
+        "message": str(payload["message"]).strip(),
+    }
+    pending_dir = CONTACT_QUEUE_DIR / "pending"
+    pending_dir.mkdir(mode=0o700, parents=True, exist_ok=True)
+    target = pending_dir / f"{contact_id}.pending.json"
+    temporary = pending_dir / f".{contact_id}.tmp"
+
+    try:
+        with temporary.open("x", encoding="utf-8") as handle:
+            os.chmod(temporary, 0o600)
+            json.dump(envelope, handle, ensure_ascii=False, separators=(",", ":"))
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, target)
+    except Exception:
+        try:
+            temporary.unlink(missing_ok=True)
+        except OSError:
+            pass
+        raise
+    return contact_id
 
 
 def main() -> None:
