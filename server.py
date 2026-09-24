@@ -246,6 +246,12 @@ class Handler(SimpleHTTPRequestHandler):
             self.send_header("Cache-Control", "public, max-age=86400")
         super().end_headers()
 
+    extensions_map = {
+        **SimpleHTTPRequestHandler.extensions_map,
+        ".xml": "application/xml; charset=utf-8",
+        ".webmanifest": "application/manifest+json; charset=utf-8",
+    }
+
     def send_error(self, code: int, message: str | None = None, explain: str | None = None) -> None:
         if code == HTTPStatus.NOT_FOUND:
             not_found_file = ROOT / "404.html"
