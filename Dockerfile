@@ -2,7 +2,7 @@ FROM python:3.12-alpine
 
 WORKDIR /app
 
-COPY index.html styles.css script.js server.py sitemap.xml robots.txt ./
+COPY index.html styles.css script.js server.py sitemap.xml robots.txt 404.html site.webmanifest ./
 COPY assets ./assets
 
 EXPOSE 8080
