@@ -480,3 +480,53 @@ function escapeHtml(str) {
 function escapeAttr(str) {
   return escapeHtml(str).replace(/`/g, '&#096;');
 }
+
+/* ==========================================================================
+   Cookie Banner & Privacy Modal Handlers
+   ========================================================================== */
+document.addEventListener('DOMContentLoaded', () => {
+  const cookieBanner = document.getElementById('cookie-banner');
+  const cookieAcceptBtn = document.getElementById('cookie-accept-btn');
+  const cookieMoreBtn = document.getElementById('cookie-more-btn');
+  const privacyModal = document.getElementById('privacy-modal');
+  const openPrivacyBtn = document.getElementById('open-privacy-btn');
+  const closePrivacyBtn = document.getElementById('close-privacy-btn');
+
+  if (cookieBanner) {
+    if (localStorage.getItem('jackstar_cookie_consent') === 'true') {
+      cookieBanner.classList.add('hidden');
+    }
+    if (cookieAcceptBtn) {
+      cookieAcceptBtn.addEventListener('click', () => {
+        localStorage.setItem('jackstar_cookie_consent', 'true');
+        cookieBanner.classList.add('hidden');
+      });
+    }
+    if (cookieMoreBtn) {
+      cookieMoreBtn.addEventListener('click', () => {
+        privacyModal?.classList.add('active');
+      });
+    }
+  }
+
+  if (openPrivacyBtn && privacyModal) {
+    openPrivacyBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      privacyModal.classList.add('active');
+    });
+  }
+
+  if (closePrivacyBtn && privacyModal) {
+    closePrivacyBtn.addEventListener('click', () => {
+      privacyModal.classList.remove('active');
+    });
+  }
+
+  if (privacyModal) {
+    privacyModal.addEventListener('click', (e) => {
+      if (e.target === privacyModal) {
+        privacyModal.classList.remove('active');
+      }
+    });
+  }
+});

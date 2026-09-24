@@ -1,0 +1,21 @@
+{
+  "name": "Jack / JackStar · Sovereign Hub",
+  "short_name": "JackStar",
+  "description": "Sistemas de alta resiliencia, infraestructura Linux en Star, DrakesCraft en Java 21 y enjambre SAORI.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07050f",
+  "theme_color": "#07050f",
+  "icons": [
+    {
+      "src": "/assets/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

@@ -242,7 +242,22 @@ class Handler(SimpleHTTPRequestHandler):
                          "form-action 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' "
                          "https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; "
                          "img-src 'self' data: https:; connect-src 'self'")
+        if self.path.startswith("/assets/") or self.path.endswith((".png", ".jpg", ".webp", ".svg", ".css", ".js", ".ico")):
+            self.send_header("Cache-Control", "public, max-age=86400")
         super().end_headers()
+
+    def send_error(self, code: int, message: str | None = None, explain: str | None = None) -> None:
+        if code == HTTPStatus.NOT_FOUND:
+            not_found_file = ROOT / "404.html"
+            if not_found_file.exists():
+                content = not_found_file.read_bytes()
+                self.send_response(HTTPStatus.NOT_FOUND)
+                self.send_header("Content-Type", "text/html; charset=utf-8")
+                self.send_header("Content-Length", str(len(content)))
+                self.end_headers()
+                self.wfile.write(content)
+                return
+        super().send_error(code, message, explain)
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, directory=str(ROOT), **kwargs)
