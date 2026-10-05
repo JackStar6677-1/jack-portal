@@ -31,7 +31,7 @@ PROFILE = {
     "philosophy": "Ambitious is good. Recoverable is better. Build it beautifully. Explain its state. Keep the rollback close.",
     "links": {
         "github": "https://github.com/JackStar6677-1",
-        "drakescraftLabs": "https://github.com/DrakesCraft-Labs",
+        "drakescraftLabs": "https://github.com/SlimefunNewHorizons",
         "discord": "https://discord.gg/rv3vtXZTk7",
         "drakescraft": "https://web.drakescraft.cl",
     },
@@ -101,7 +101,7 @@ PROJECTS = [
         "featured": True,
         "description": "Núcleo para flujos de tienda, rangos e inventarios por modalidad, diseñado para conservar evidencia y evitar entregas duplicadas.",
         "tags": ["Java 21", "Paper API", "SQLite", "Tebex API", "Idempotencia"],
-        "url": "https://github.com/DrakesCraft-Labs/Odysseia",
+        "url": "https://github.com/SlimefunNewHorizons/Odysseia",
     },
     {
         "id": "linux-infrastructure",
@@ -134,7 +134,7 @@ PROJECTS = [
         "featured": False,
         "description": "Forks Java centrados en serialización robusta e inventarios aislados para reducir riesgos de pérdida en cambios de modalidad.",
         "tags": ["Java", "Paper Data Components", "Integridad", "Pruebas"],
-        "url": "https://github.com/DrakesCraft-Labs/BentoBox-Drake",
+        "url": "https://github.com/SlimefunNewHorizons/BentoBox-Drake",
     },
     {
         "id": "calendar-platform",
@@ -189,7 +189,7 @@ PROJECTS = [
         "featured": False,
         "description": "Colección y mantenimiento de addons y ports de Slimefun adaptados al runtime Java actual y al equilibrio del servidor.",
         "tags": ["Java", "Slimefun4", "Addons", "Compatibilidad", "Mantenimiento"],
-        "url": "https://github.com/DrakesCraft-Labs",
+        "url": "https://github.com/SlimefunNewHorizons",
     },
     {
         "id": "saori-omnichannel",
