@@ -1542,6 +1542,31 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   color: var(--cyan);
 }
 
+.footer-legal-notice {
+  background: rgba(14, 11, 28, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 3px solid var(--purple-bright);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.footer-legal-notice .eula-text {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #fca5a5;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+.footer-legal-notice .trademark-text {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+  margin: 0;
+}
+
 .footer-bottom {
   display: flex;
   align-items: center;
