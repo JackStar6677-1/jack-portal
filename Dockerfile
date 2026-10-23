@@ -2,6 +2,9 @@ FROM python:3.12-alpine
 
 WORKDIR /app
 
+# CVE 2026-10 (vuln_watch): pip de la imagen base
+RUN pip install --no-cache-dir -U "pip>=25.3"
+
 COPY index.html styles.css script.js server.py sitemap.xml robots.txt 404.html site.webmanifest ./
 COPY assets ./assets
 
