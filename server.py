@@ -112,7 +112,7 @@ PROJECTS = [
         "category_id": "gaming",
         "badge": "190 Plugins · 26.2",
         "featured": True,
-        "description": "Ecosistema Minecraft en Paper 26.2 y Purpur 1.21.11 (Java 25) con 6 modalidades activas (Survival Slimefun, BSkyBlock, AOneBlock, OneChunk, Clásico, Laboratorio), 190 plugins operativos con 100% de paridad y crossplay Geyser Bedrock.",
+        "description": "Ecosistema Minecraft en Paper 26.2 y Purpur 1.21.11 (Java 25) con 6 modalidades activas (Survival Slimefun, BSkyBlock, AOneBlock, OneChunk, Clásico, Laboratorio), 192 plugins operativos con 100% de paridad y crossplay Geyser Bedrock.",
         "tags": ["Paper 26.2", "Java 25", "Bedrock Híbrido", "190 Plugins", "6 Modalidades"],
         "url": "https://web.drakescraft.cl",
     },
