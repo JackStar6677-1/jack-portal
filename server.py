@@ -39,7 +39,7 @@ PROFILE = {
     "stats": {
         "pluginsMaintained": "100+",
         "gameModes": 6,
-        "stagingAddons": "49 Slimefun (S2)",
+        "stagingAddons": "49 Slimefun (S2 - 100% Verificado)",
         "runtime": "Java 21 · Python 3.12 · Linux SRE",
     },
 }
@@ -342,6 +342,26 @@ class Handler(SimpleHTTPRequestHandler):
         super().do_GET()
 
     def do_POST(self) -> None:
+        if self.path == "/api/analytics/collect":
+            content_length = int(self.headers.get("Content-Length", "0") or "0")
+            if content_length <= 0 or content_length > MAX_BODY_BYTES:
+                self.send_json({"ok": False}, HTTPStatus.BAD_REQUEST)
+                return
+            try:
+                raw = self.rfile.read(content_length).decode("utf-8")
+                body = json.loads(raw)
+                analytics_file = ROOT / "data" / "analytics.jsonl"
+                analytics_file.parent.mkdir(parents=True, exist_ok=True)
+                body["ts"] = int(time.time() * 1000)
+                body["client_ip"] = (self.client_address[0] if self.client_address else "0.0.0.0").rsplit(".", 1)[0] + ".0"
+                body["ua"] = self.headers.get("User-Agent", "")
+                with open(analytics_file, "a", encoding="utf-8") as f:
+                    f.write(json.dumps(body) + chr(10))
+                self.send_json({"ok": True})
+            except Exception:
+                self.send_json({"ok": False}, HTTPStatus.INTERNAL_SERVER_ERROR)
+            return
+
         if self.path != "/api/contact":
             self.send_error(HTTPStatus.NOT_FOUND)
             return

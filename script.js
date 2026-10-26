@@ -532,3 +532,66 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+
+/* --- Jack Portal Universal Analytics Engine --- */
+(function () {
+  'use strict';
+  try {
+    const CONFIG = {
+      endpoint: '/api/analytics/collect',
+      gaMeasurementId: window.GA_MEASUREMENT_ID || document.querySelector('meta[name="ga-measurement-id"]')?.getAttribute('content') || null
+    };
+
+    if (CONFIG.gaMeasurementId && !window.gtag) {
+      const s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(CONFIG.gaMeasurementId);
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', CONFIG.gaMeasurementId, { anonymize_ip: true, send_page_view: true });
+    }
+
+    function getSessionId() {
+      try {
+        let sid = sessionStorage.getItem('jack_session_id');
+        if (!sid) {
+          sid = 's_' + Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
+          sessionStorage.setItem('jack_session_id', sid);
+        }
+        return sid;
+      } catch (_) { return 'anon_' + Date.now(); }
+    }
+
+    function sendBeacon(eventData) {
+      const payload = JSON.stringify(Object.assign({}, eventData, {
+        ts: Date.now(),
+        session: getSessionId(),
+        path: window.location.pathname,
+        title: document.title,
+        referrer: document.referrer || '',
+        screen: (window.screen ? window.screen.width + 'x' + window.screen.height : ''),
+        lang: navigator.language || ''
+      }));
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(CONFIG.endpoint, new Blob([payload], { type: 'application/json' }));
+      } else {
+        fetch(CONFIG.endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload, keepalive: true }).catch(function () {});
+      }
+    }
+
+    window.trackEvent = function (name, props) {
+      if (window.gtag && CONFIG.gaMeasurementId) window.gtag('event', name, props || {});
+      sendBeacon({ type: 'custom', event: name, props: props || {} });
+    };
+
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      sendBeacon({ type: 'pageview' });
+    } else {
+      document.addEventListener('DOMContentLoaded', function () { sendBeacon({ type: 'pageview' }); }, { once: true });
+    }
+  } catch (_) {}
+})();
