@@ -37,10 +37,10 @@ PROFILE = {
         "youtube": "https://www.youtube.com/@jackstar6677",
     },
     "stats": {
-        "pluginsMaintained": "100+",
+        "pluginsMaintained": "202 Plugins (20.0 TPS)",
         "gameModes": 6,
-        "stagingAddons": "49 Slimefun (S2 - 100% Verificado)",
-        "runtime": "Java 21 · Python 3.12 · Linux SRE",
+        "stagingAddons": "90+ Slimefun Addons (26.2)",
+        "runtime": "Java 25 LTS · Rust Panama FFM · Linux SRE",
     },
 }
 
@@ -53,9 +53,9 @@ SERVICES = [
     },
     {
         "area": "Ecosistema Minecraft Técnico",
-        "title": "Desarrollo Java & Engines Transaccionales",
-        "description": "Paper / Purpur 1.21.11, Java 21, Odysseia Engine (idempotencia y entrega Tebex), BentoBox-Drake, 100+ plugins mantenidos y 49 addons Slimefun en staging automatizado.",
-        "items": ["Purpur 1.21.11", "Java 21", "Odysseia Engine", "BentoBox-Drake", "Slimefun S2 Staging", "6 Modalidades"],
+        "title": "Motores Híbridos Java 25 × Rust & StarSuites",
+        "description": "DrakesPurpur 26.2 con biblioteca nativa Rust Panama FFM, prefetch direccional P-promovido, LOD terrain, StarSuites agrupando 90+ addons en 8 Mega-Suites, Odysseia Engine y 202 plugins a 20.0 TPS determinista.",
+        "items": ["Purpur 26.2", "Java 25 LTS", "Rust Panama FFM", "StarSuites 90+", "Odysseia Engine", "20.0 TPS"],
     },
     {
         "area": "Compiladores & Multiagente",
@@ -72,6 +72,39 @@ SERVICES = [
 ]
 
 PROJECTS = [
+    {
+        "id": "saori-tactical",
+        "name": "SAORI Tactical // Defense & Survival OS",
+        "category": "Defensa & Supervivencia",
+        "category_id": "ai",
+        "badge": "Zero-VRAM Edge AI",
+        "featured": True,
+        "description": "Estación táctica y sistema operativo local para emergencias civiles, blackout y supervivencia off-grid. Acelerado en GPU RTX 4060 con política Zero-VRAM (Llama 3.2, Qwen Coder, DeepSeek R1), red mallada P2P Store-and-Forward (DTN), estudio Morse WAV, telemetría celular ADB y 13 planos constructivos de ingeniería de campo.",
+        "tags": ["Python", "Ollama Zero-VRAM", "Mesh P2P DTN", "Ham Radio & Morse", "ADB Bridge", "Off-Grid Survival"],
+        "url": "https://github.com/SlimefunNewHorizons/saori-tactical",
+    },
+    {
+        "id": "drakes-purpur",
+        "name": "DrakesPurpur 26.2 // Project Purple",
+        "category": "Motores & Compiladores",
+        "category_id": "gaming",
+        "badge": "Java 25 × Rust FFM",
+        "featured": True,
+        "description": "Motor híbrido soberano sobre Purpur 26.2 (Java 25) con biblioteca nativa Rust Panama FFM (native/drakes-hybrid). Bit-exact en NBT y ruido, prefetch direccional P-promovido, LOD terrain horizon:lod v1 con caché LRU O(1) y 202 plugins a 20.0 TPS / 1.7 ms MSPT.",
+        "tags": ["Java 25 LTS", "Rust Panama FFM", "Purpur 26.2", "Chunk Prefetch", "LOD Terrain", "20.0 TPS"],
+        "url": "https://github.com/SlimefunNewHorizons/DrakesPurpur",
+    },
+    {
+        "id": "drakestar-launcher",
+        "name": "DrakeStar Launcher",
+        "category": "Desktop & Launchers",
+        "category_id": "gaming",
+        "badge": "Tauri 2 × Svelte 5",
+        "featured": True,
+        "description": "Launcher de escritorio cross-platform nativo para Minecraft en Rust y Tauri 2 con frontend en Svelte 5 y Vite. Sincronización delta de modpacks, analizador de conflictos Mixin/Fabric y supervisor integrado de servidores locales.",
+        "tags": ["Rust", "Tauri 2", "Svelte 5", "Vite", "Delta Sync", "Cross-Platform"],
+        "url": "https://github.com/SlimefunNewHorizons/DrakeStar-Launcher",
+    },
     {
         "id": "omniast",
         "name": "OmniAST & Semantic Engine",
